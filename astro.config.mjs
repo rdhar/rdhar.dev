@@ -20,6 +20,6 @@ export default defineConfig({
     drafts: true
   },
   site: 'https://rdhar.github.io',
-  base: 'rdhar.dev/',
+  base: '/rdhar.dev',
   integrations: [sitemap(), mdx()]
 });
