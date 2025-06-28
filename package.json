@@ -1,0 +1,24 @@
+{
+  "name": "rdhar.dev",
+  "version": "2025.06.28-15.00",
+  "private": true,
+  "scripts": {
+    "astro": "astro",
+    "build": "astro build",
+    "dev": "astro dev",
+    "preview": "astro preview",
+    "start": "astro dev"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "4.3.0",
+    "@astrojs/sitemap": "3.4.1",
+    "@astrolib/seo": "1.0.0-beta.8",
+    "astro": "5.10.0",
+    "tailwind-scrollbar-hide": "4.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "0.5.16",
+    "@tailwindcss/vite": "4.1.10",
+    "tailwindcss": "4.1.10"
+  }
+}

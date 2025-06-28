@@ -1,0 +1,31 @@
+---
+// Foundations
+import Text from "@/components/foundations/elements/Text.astro";
+import Wrapper from "@/components/foundations/containers/Wrapper.astro";
+---
+
+<section>
+  <Wrapper variant="standard">
+    <div
+      class="grid grid-cols-1 gap-4 md:grid-cols-3 border-b pb-8 pt-24 border-base-200 dark:border-base-800">
+      <div>
+        <Text tag="h1" variant="textSM" class="font-medium text-base-900 dark:text-white"
+          >Rishav Dhar</Text
+        >
+        <Text tag="p" variant="textXS" class="text-base-600 dark:text-base-600 dark:text-base-400">
+          Sr DevOps Engineer of<br />
+          AWS/Hashicorp Platform<br />
+          based in Edinburgh, UK</Text
+        >
+      </div>
+      <Text
+        tag="p"
+        variant="textSM"
+        class="text-base-600 dark:text-base-600 dark:text-base-400 lg:col-span-2">
+        Spanning finance, aerospace, and security industries from 8+ years of hands-on experience,
+        I'm focused on scaling automated processes with a close feedback loop to bridge the gap
+        between code and repeat customers. Happy to chat all things cloud platforms.
+      </Text>
+    </div>
+  </Wrapper>
+</section>
