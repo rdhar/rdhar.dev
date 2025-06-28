@@ -13,6 +13,7 @@
     "@astrojs/mdx": "4.3.0",
     "@astrojs/sitemap": "3.4.1",
     "@astrolib/seo": "1.0.0-beta.8",
+    "astro-relative-links": "0.4.2",
     "astro": "5.10.1",
     "tailwind-scrollbar-hide": "4.0.0"
   },
