@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from "@astrojs/sitemap";
 import mdx from '@astrojs/mdx';
+import relativeLinks from 'astro-relative-links';
 
 // https://astro.build/config
 export default defineConfig({
@@ -21,5 +22,5 @@ export default defineConfig({
   },
   site: 'https://rdhar.github.io',
   base: '/rdhar.dev',
-  integrations: [sitemap(), mdx()]
+  integrations: [sitemap(), mdx(), relativeLinks()]
 });
