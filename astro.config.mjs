@@ -20,7 +20,7 @@ export default defineConfig({
     skipInline: false,
     drafts: true
   },
-  site: 'https://rdhar.github.io',
-  base: 'rdhar.dev',
+  site: 'https://rdhar.github.io/rdhar.dev',
+  // base: 'rdhar.dev',
   integrations: [sitemap(), mdx(), relativeLinks()]
 });
