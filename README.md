@@ -1,119 +1,40 @@
 # [rdhar.dev](https://rdhar.github.io/rdhar.dev/)
 
-## Template Integrations
-- Tailwind CSS v4 Beta
-- Astro SEO - Powered by [@astrolib/seo](https://github.com/onwidget/astrolib/tree/main/packages/seo)
-- Astro Sitemap - https://docs.astro.build/en/guides/integrations-guide/sitemap/
+## Usage
 
-## Template Structure
+```bash
+npm install
 
-The template follows a typical Astro project structure. You'll find the following key directories and files:
-
-
-```
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+npm start
 ```
 
-- `src/pages/`: Contains `.astro` and `.md` files. Each file becomes a route in your project based on its name.
-- `src/components/`: Ideal for placing your Astro/React/Vue/Svelte/Preact components.
-- `public/`: For static assets such as images that you want to serve directly.
+</br>
 
-## Commands
+## Deploy
 
-All commands are run from the root of the project, from a terminal:
+Feel free to deploy and host your site on your favorite static hosting service such as Netlify, Firebase Hosting, Vercel, GitHub Pages, etc.
 
-| Command                | Action                                           |
-| :--------------------- | :----------------------------------------------- |
-| `npm install`          | Installs dependencies                            |
-| `npm run dev`          | Starts local dev server at `localhost:3000`      |
-| `npm run build`        | Build your production site to `./dist/`          |
-| `npm run preview`      | Preview your build locally, before deploying     |
-| `npm run astro ...`    | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro --help` | Get help using the Astro CLI                     |
+Astro has [an in-depth guide](https://docs.astro.build/en/guides/deploy/) on how to deploy an Astro project to each service.
 
-Learn more - Explore more through Astro's official [documentation](https://docs.astro.build).
-------
-Updated on 20th June 2025
+</br>
 
-- Full redesign
-- Added light/dark mode
-- Added navigation
-- Added blog and content collections
-## This update includes:
- Added Image component from Astro
-  The Astro Image component is coming back to the themes
+## Changelog
 
-- Reusable components
-  This template now includes reusable components, such as the `Text` component:
+View [all notable changes](https://github.com/rdhar/rdhar.dev/releases "Releases.") to this project in [Keep a Changelog](https://keepachangelog.com "Keep a Changelog.") format, which adheres to [Semantic Versioning](https://semver.org "Semantic Versioning.").
 
-- Button Component
-  A customizable button component with options to fit your design needs:
+> [!TIP]
+>
+> All forms of **contribution are very welcome** and deeply appreciated for fostering open-source projects.
+>
+> - [Create a PR](https://github.com/rdhar/rdhar.dev/pulls "Create a pull request.") to contribute changes you'd like to see.
+> - [Raise an issue](https://github.com/rdhar/rdhar.dev/issues "Raise an issue.") to propose changes or report unexpected behavior.
+> - [Open a discussion](https://github.com/rdhar/rdhar.dev/discussions "Open a discussion.") to discuss broader topics or questions.
+> - [Become a stargazer](https://github.com/rdhar/rdhar.dev/stargazers "Become a stargazer.") if you find this project useful.
 
-- **Variants:** Choose from predefined styles like `primary` (dark background) and `secondary` (lighter background), with support for dark mode.
-- **Sizes:** Select `small` or `medium` for different button heights and padding.
-- **Gaps:** Control the spacing between content with the `gapSize` prop (either `small` or `medium`).
-- **Custom Classes:** Apply additional styles using the `class` prop.
-- **Slots:** Include icons or extra content with optional `left-icon` and `right-icon` slots.
-  Example usage:
+</br>
 
-```astro
-<!-- Default button -->
-<Button size="small" variant="primary">Primary small</Button>
-<!-- Button with icon -->
-<Button iconOnly size="small" variant="primary">·</Button>
-<!-- Button as link -->
-<Button isLink={true} href="#_" size="small" variant="primary">Primary small</Button>
-```
+## License
 
-- Wrapper Component
-  A flexible layout component that helps with consistent spacing and alignment.
-
-- **Variants:** The default `standard` variant includes responsive widths, centered content, and padding.
-- **Custom Classes:** Add or change styles with the `class` prop.
-- **Content Slot:** Easily add any child components or content inside.
-
-```astro
-<Wrapper variant="standard">
-Your content goes here
-</Wrapper>
-```
-------
-Updated on 18th January 2024
-
-## This update includes:
-- Full redesign of the template
-
-On this version, Tailwind CSS is now beta the alpha version from Tailwind CSS V4, this means that there's no `tailwind.config.mjs` file anymore. From now on, all style will be added on the `css` file. You can find the styles on the `src/styles/global.css` file.
-
-
-- Astro SEO by @astrolib/seo
-This update includes the integration of the Astro SEO package by @astrolib/seo, is an integration that makes managing your SEO easier in Astro projects. It is fully based on the excellent Next SEO library
-
-- Added Image component from Astro
-The Astro Image component is coming back to the themes
-
-- Reusable components
-This template now includes reusable components, such as the `Text` component:
-- Text Component
-A flexible and reusable typography component for dynamic text elements. It allows you to:
-
-- Dynamically set the HTML tag (e.g., `h1`, `p`, `span`) via the `tag` prop.
-- Apply predefined text styling variants (e.g., `displayXL`, `textMD`) for consistency across your project.
-- Add custom classes for additional styling with the `class` prop.
-
-Example usage:
-```astro
-<Text tag="h1" variant="displayXL" class="text-center">
-  Welcome to the new version!
-</Text>
-```
------
-
-### [Support](https://lexingtonthemes.com/legal/support/)
-### [Documentation](https://lexingtonthemes.com/documentation/quick-start/)
-### [Get your bundle](https://lexingtonthemes.com)
+- This project is licensed under the **permissive** [Apache License 2.0](LICENSE "Apache License 2.0.").
+- All works herein are my own, shared of my own volition, and [contributors](https://github.com/rdhar/rdhar.dev/graphs/contributors "Contributors.").
+- Copyleft 2016-present [Rishav Dhar](https://rdhar.dev "Rishav Dhar's profile.") — All wrongs reserved.
