@@ -1,0 +1,45 @@
+---
+// Foundations
+import Text from "@/components/foundations/elements/Text.astro";
+import Wrapper from "@/components/foundations/containers/Wrapper.astro";
+---
+
+<footer>
+  <Wrapper variant="standard">
+    <div
+      class="grid grid-cols-1 gap-4 md:grid-cols-3 border-b pt-8 pb-24 border-base-200 dark:border-base-800">
+      <Text tag="h3" variant="textSM" class="text-base-900 dark:text-white">
+        Edinburgh, UK
+        <span id="clock" class="block text-base-600 dark:text-base-600 dark:text-base-400 text-xs">
+        </span>
+      </Text>
+      <Text
+        tag="p"
+        variant="textXS"
+        class="text-base-600 dark:text-base-600 dark:text-base-400 lg:col-span-2">
+        🄯 Copyleft 2016-present, Rishav Dhar. All wrongs reserved.
+      </Text>
+    </div>
+  </Wrapper>
+</footer>
+<script type="module">
+  // Function to update the clock display with Edinburgh time
+  function updateClock() {
+    // Get current date/time
+    const now = new Date();
+    // Format time for Edinburgh timezone in 12-hour format
+    const time = now.toLocaleTimeString("en-US", {
+      timeZone: "Europe/London", // Convert to Edinburgh time
+      hour12: true, // Use 12-hour format (AM/PM)
+      hour: "2-digit", // Always show 2 digits for hour (01, 02, etc.)
+      minute: "2-digit", // Always show 2 digits for minutes (01, 02, etc.)
+    });
+    // Update the clock element in the DOM with the formatted time
+    document.getElementById("clock").textContent = time;
+  }
+  // Initialize both clock and year on page load
+  updateClock();
+  updateYear();
+  // Set up automatic clock updates every 1000ms (1 second)
+  setInterval(updateClock, 1000);
+</script>
