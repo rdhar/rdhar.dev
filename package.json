@@ -10,16 +10,16 @@
     "start": "astro dev"
   },
   "dependencies": {
-    "@astrojs/mdx": "4.3.0",
-    "@astrojs/sitemap": "3.4.1",
+    "@astrojs/mdx": "4.3.3",
+    "@astrojs/sitemap": "3.5.0",
     "@astrolib/seo": "1.0.0-beta.8",
     "astro-relative-links": "0.4.2",
-    "astro": "5.10.1",
+    "astro": "5.13.0",
     "tailwind-scrollbar-hide": "4.0.0"
   },
   "devDependencies": {
     "@tailwindcss/typography": "0.5.16",
-    "@tailwindcss/vite": "4.1.11",
-    "tailwindcss": "4.1.11"
+    "@tailwindcss/vite": "4.1.12",
+    "tailwindcss": "4.1.12"
   }
 }
