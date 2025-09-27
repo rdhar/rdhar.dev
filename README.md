@@ -1,20 +1,22 @@
-# [rdhar.dev](https://rdhar.github.io/rdhar.dev/)
+# [rdhar.dev](https://www.rdhar.dev/)
+
+> This is a static lightweight portfolio and blog theme built with Astro ([Nano](https://github.com/markhorn-dev/astro-nano/)), Tailwind and Typescript.
 
 ## Usage
 
-```bash
-npm install
-
-npm start
-```
-
-</br>
-
-## Deploy
-
-Feel free to deploy and host your site on your favorite static hosting service such as Netlify, Firebase Hosting, Vercel, GitHub Pages, etc.
-
-Astro has [an in-depth guide](https://docs.astro.build/en/guides/deploy/) on how to deploy an Astro project to each service.
+| Command                   | Action                                            |
+| :------------------------ | :------------------------------------------------ |
+| `npm install`             | Installs dependencies                             |
+| `npm run dev`             | Starts local dev server at `localhost:4321`       |
+| `npm run dev:network`     | Starts local dev server on local network          |
+| `npm run sync`            | Generates TypeScript types for all Astro modules. |
+| `npm run build`           | Build your production site to `./dist/`           |
+| `npm run preview`         | Preview your build locally, before deploying      |
+| `npm run preview:network` | Preview build on local network                    |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check`  |
+| `npm run astro -- --help` | Get help using the Astro CLI                      |
+| `npm run lint`            | Run ESLint                                        |
+| `npm run lint:fix`        | Auto-fix ESLint issues                            |
 
 </br>
 
@@ -37,4 +39,4 @@ View [all notable changes](https://github.com/rdhar/rdhar.dev/releases "Releases
 
 - This project is licensed under the **permissive** [Apache License 2.0](LICENSE "Apache License 2.0.").
 - All works herein are my own, shared of my own volition, and [contributors](https://github.com/rdhar/rdhar.dev/graphs/contributors "Contributors.").
-- Copyleft 2016-present [Rishav Dhar](https://rdhar.dev "Rishav Dhar's profile.") — All wrongs reserved.
+- Copyleft 2016-present [Rishav Dhar](https://github.com/rdhar/ "Rishav Dhar's profile.") — All wrongs reserved.
