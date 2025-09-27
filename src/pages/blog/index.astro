@@ -1,49 +1,56 @@
 ---
-// Foundations
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import Text from "@/components/foundations/elements/Text.astro";
-import Wrapper from "@/components/foundations/containers/Wrapper.astro";
-// Component
-import BlogEntry from "@/components/blog/BlogEntry.astro";
-// Content
-import { getCollection } from "astro:content";
-const allPostsUnsorted = await getCollection("posts");
-// Sort the posts in descending order by publication date (newest to oldest)
-const allPosts = allPostsUnsorted.sort(
-  (a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate),
-);
-// Tags
-const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
+import { type CollectionEntry, getCollection } from "astro:content";
+import PageLayout from "@layouts/PageLayout.astro";
+import Container from "@components/Container.astro";
+import ArrowCard from "@components/ArrowCard.astro";
+import { BLOG } from "@consts";
+
+const data = (await getCollection("blog"))
+  .filter(post => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  
+type Acc = {
+  [year: string]: CollectionEntry<"blog">[];
+}
+
+const posts = data.reduce((acc: Acc, post) => {
+    const year = post.data.date.getFullYear().toString();
+    if (!acc[year]) {
+      acc[year] = [];
+    }
+    acc[year].push(post);
+    return acc;
+  }, {});
+
+const years = Object.keys(posts).sort((a, b) => parseInt(b) - parseInt(a)); 
 ---
 
-<BaseLayout>
-  <section>
-    <Wrapper variant="standard">
-      <div
-        class="grid grid-cols-1 gap-4 md:grid-cols-3 border-b pb-8 pt-24 border-base-200 dark:border-base-800">
-        <div class="lg:sticky lg:top-24 lg:z-40 self-start">
-          <Text tag="h1" variant="textSM" class="font-medium text-base-900 dark:text-white">
-            Writings
-          </Text>
-          <div
-            class="relative flex h-full mt-1 overflow-x-scroll gap-2 scrollable-content snap-x snap-proximity scrollbar-hide lg:flex-col lg:gap-1 lg:mt-8">
-            {
-              tags.map((tag) => (
-                <a
-                  title={tag}
-                  aria-label={tag}
-                  href={`/blog/tags/${tag}`}
-                  class="text-xs capitalize text-base-600 dark:text-base-600 dark:text-base-400 hover:text-base-900 dark:hover:text-white">
-                  {tag}
-                </a>
-              ))
-            }
-          </div>
-        </div>
-        <div class="flex flex-col gap-12 lg:col-span-2">
-          {allPosts.map((post) => <BlogEntry post={post} />)}
-        </div>
+<PageLayout title={BLOG.TITLE} description={BLOG.DESCRIPTION}>
+  <Container>
+    <div class="space-y-10">
+      <div class="animate font-semibold text-black dark:text-white">
+        Blog
       </div>
-    </Wrapper>
-  </section>
-</BaseLayout>
+      <div class="space-y-4">
+        {years.map(year => (
+          <section class="animate space-y-4">
+            <div class="font-semibold text-black dark:text-white">
+              {year}
+            </div>
+            <div>
+              <ul class="flex flex-col gap-4">
+                {
+                  posts[year].map((post) => (
+                    <li>
+                      <ArrowCard entry={post}/>
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+          </section>
+        ))}
+      </div>
+    </div>
+  </Container>
+</PageLayout>

@@ -1,5 +1,7 @@
-# Build output
+# Generated types
 .astro/
+
+# Build output
 dist/
 
 # Dependencies
@@ -14,11 +16,6 @@ yarn-error.log*
 # Environment variables
 .env
 .env.production
-
-# Git-specific files
-.git/
-.gitconfig
-.gitignore
 
 # Temporary/system files
 .DS_Store
