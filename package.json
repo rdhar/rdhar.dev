@@ -3,14 +3,14 @@
   "version": "2025.09.27-15.00",
   "private": true,
   "scripts": {
+    "astro": "astro",
+    "build": "astro check && astro build",
     "dev": "astro dev",
     "dev:network": "astro dev --host",
-    "build": "astro check && astro build",
-    "preview": "astro preview",
-    "preview:network": "astro preview --host",
-    "astro": "astro",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "preview": "astro preview",
+    "preview:network": "astro preview --host"
   },
   "dependencies": {
     "@astrojs/check": "0.9.4",
