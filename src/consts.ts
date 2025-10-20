@@ -5,7 +5,7 @@ export const SITE: Site = {
   EMAIL: "hi@rdhar.dev",
   NUM_POSTS_ON_HOMEPAGE: 2,
   NUM_WORKS_ON_HOMEPAGE: 2,
-  NUM_PROJECTS_ON_HOMEPAGE: 0,
+  NUM_PROJECTS_ON_HOMEPAGE: 1,
 };
 
 export const HOME: Metadata = {
@@ -29,10 +29,6 @@ export const PROJECTS: Metadata = {
 };
 
 export const SOCIALS: Socials = [
-  {
-    NAME: "twitter-x",
-    HREF: "https://twitter.com/markhorn_dev",
-  },
   {
     NAME: "github",
     HREF: "https://github.com/rdhar"
