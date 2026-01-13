@@ -12,7 +12,7 @@
     "clsx": "2.1.1",
     "tailwind-merge": "3.4.0"
   },
-  "description": "Personal portfolio and blog of Rishav Dhar, senior DevOps in Platform Engineering.",
+  "description": "Personal portfolio and blog of Rishav Dhar, senior DevOps in Platform Engineering @Tucows.",
   "devDependencies": {
     "@astrojs/check": "0.9.6",
     "@astrojs/mdx": "4.3.13",
