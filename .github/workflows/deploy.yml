@@ -11,9 +11,13 @@ jobs:
     runs-on: ubuntu-24.04
 
     permissions:
-      contents: read # Required for repository checkout.
+      contents: write # Required for repository checkout and release tag.
       id-token: write # Required for authenticating GitHub Pages.
       pages: write # Required for publishing to GitHub Pages.
+
+    concurrency:
+      cancel-in-progress: true
+      group: releases
 
     environment:
       name: github-pages
@@ -49,3 +53,13 @@ jobs:
         uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5
         with:
           preview: true
+
+      - name: Create release tag
+        env:
+          GH_REPO: ${{ github.repository }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          DATETIME=$(date +'%Y.%m.%d-%H.%M') # Format: YYYY.MM.DD-HH.mm
+          gh release create "v$DATETIME" --generate-notes dist
+          gh release create v1.2.3 '/path/to/asset.zip#My display label'
+          echo "View release tag: https://github.com/$GH_REPO/releases/tag/v$DATETIME" >> $GITHUB_STEP_SUMMARY
