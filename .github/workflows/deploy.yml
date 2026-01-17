@@ -60,6 +60,5 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           DATETIME=$(date +'%Y.%m.%d-%H.%M') # Format: YYYY.MM.DD-HH.mm
-          gh release create "v$DATETIME" --generate-notes dist
-          gh release create v1.2.3 '/path/to/asset.zip#My display label'
+          gh release create "v$DATETIME" --generate-notes dist/*
           echo "View release tag: https://github.com/$GH_REPO/releases/tag/v$DATETIME" >> $GITHUB_STEP_SUMMARY
