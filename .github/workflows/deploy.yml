@@ -19,9 +19,9 @@ jobs:
       cancel-in-progress: true
       group: releases
 
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    # environment:
+    #   name: github-pages
+    #   url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: Checkout repository
