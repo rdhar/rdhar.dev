@@ -42,6 +42,18 @@ jobs:
       - name: Build project
         run: npm run build
 
+      - name: Upload to GitHub Pages
+        uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4.0.0
+        with:
+          path: dist
+          retention-days: 1
+
+      # - name: Deploy to GitHub Pages
+      #   id: deployment
+      #   uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5
+      #   with:
+      #     preview: true
+
       - name: Deploy to web server
         env:
           SSHHOST: ${{ secrets.SSH_HOST }}
@@ -51,18 +63,6 @@ jobs:
         run: |
           sshpass -e ssh -p $SSHPORT $SSHUSER@$SSHHOST "rm -rf ~/domains/www.rdhar.dev/public_html/*"
           sshpass -e scp -P $SSHPORT -r dist/* $SSHUSER@$SSHHOST:~/domains/www.rdhar.dev/public_html/
-
-      # - name: Upload to GitHub Pages
-      #   uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4.0.0
-      #   with:
-      #     path: dist
-      #     retention-days: 1
-
-      # - name: Deploy to GitHub Pages
-      #   id: deployment
-      #   uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5
-      #   with:
-      #     preview: true
 
       # - name: Create release tag
       #   env:
