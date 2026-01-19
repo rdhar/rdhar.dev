@@ -3,7 +3,7 @@ name: Deploy
 
 on:
   push:
-    # branches: [main]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -19,9 +19,9 @@ jobs:
       cancel-in-progress: true
       group: releases
 
-    # environment:
-    #   name: github-pages
-    #   url: ${{ steps.deployment.outputs.page_url }}
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: Checkout repository
@@ -48,11 +48,11 @@ jobs:
           path: dist
           retention-days: 1
 
-      # - name: Deploy to GitHub Pages
-      #   id: deployment
-      #   uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5
-      #   with:
-      #     preview: true
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5
+        with:
+          preview: true
 
       - name: Deploy to web server
         env:
@@ -65,12 +65,12 @@ jobs:
           sshpass -e ssh -o StrictHostKeyChecking=no -p $SSHPORT $SSHUSER@$SSHHOST "rm -rf $TARGET*"
           sshpass -e scp -o StrictHostKeyChecking=no -P $SSHPORT -r dist/* $SSHUSER@$SSHHOST:$TARGET
 
-      # - name: Create release tag
-      #   env:
-      #     GH_REPO: ${{ github.repository }}
-      #     GH_TOKEN: ${{ github.token }}
-      #   run: |
-      #     DATETIME=$(date +'%Y.%m.%d-%H.%M') # Format: YYYY.MM.DD-HH.mm
-      #     tar -czf dist.tar.gz -C dist .
-      #     gh release create "v$DATETIME" --generate-notes 'dist.tar.gz#rdhar.dev'
-      #     echo "View release tag: https://github.com/$GH_REPO/releases/tag/v$DATETIME" >> $GITHUB_STEP_SUMMARY
+      - name: Create release tag
+        env:
+          GH_REPO: ${{ github.repository }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          DATETIME=$(date +'%Y.%m.%d-%H.%M') # Format: YYYY.MM.DD-HH.mm
+          tar -czf dist.tar.gz -C dist .
+          gh release create "v$DATETIME" --generate-notes 'dist.tar.gz#rdhar.dev'
+          echo "View release tag: https://github.com/$GH_REPO/releases/tag/v$DATETIME" >> $GITHUB_STEP_SUMMARY
