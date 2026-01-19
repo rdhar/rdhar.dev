@@ -49,8 +49,8 @@ jobs:
           SSHPORT: ${{ secrets.SSH_PORT }}
           SSHUSER: ${{ secrets.SSH_USER }}
         run: |
-          sshpass -e ssh -o StrictHostKeyChecking=no -p $SSHPORT $SSHUSER@$SSHHOST "rm -rf ~/domains/www.rdhar.dev/public_html/*"
-          sshpass -e scp -o StrictHostKeyChecking=no -P $SSHPORT -r dist/* $SSHUSER@$SSHHOST:~/domains/www.rdhar.dev/public_html/
+          sshpass -e ssh -p $SSHPORT $SSHUSER@$SSHHOST "rm -rf ~/domains/www.rdhar.dev/public_html/*"
+          sshpass -e scp -P $SSHPORT -r dist/* $SSHUSER@$SSHHOST:~/domains/www.rdhar.dev/public_html/
 
       # - name: Upload to GitHub Pages
       #   uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4.0.0
