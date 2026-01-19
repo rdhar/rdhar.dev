@@ -63,7 +63,7 @@ jobs:
           TARGET: ~/domains/www.rdhar.dev/public_html/
         run: |
           sshpass -e ssh -o StrictHostKeyChecking=no -p $SSHPORT $SSHUSER@$SSHHOST "rm -rf $TARGET*"
-          sshpass -e scp -o StrictHostKeyChecking=no -P $SSHPORT -r dist/* $SSHUSER@$SSHHOST:$TARGET
+          sshpass -e scp -o StrictHostKeyChecking=no -P $SSHPORT -r dist/. $SSHUSER@$SSHHOST:$TARGET
 
       - name: Create release tag
         env:
