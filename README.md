@@ -1,6 +1,6 @@
 # [rdhar.dev](https://www.rdhar.dev/)
 
-> This is a static lightweight portfolio and blog theme built with Astro ([Nano](https://github.com/markhorn-dev/astro-nano/)), Tailwind and Typescript.
+> This is a static lightweight portfolio and blog theme built with Astro ([Nano](https://github.com/markhorn-dev/astro-nano/) template), Tailwind CSS and Typescript.
 
 ## Usage
 
