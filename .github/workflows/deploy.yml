@@ -3,7 +3,7 @@ name: Deploy
 
 on:
   push:
-    branches: [main]
+    # branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -29,37 +29,49 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Setup Node.js
-        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
-        with:
-          cache: npm
-          cache-dependency-path: package-lock.json
-          node-version: 24
-
-      - name: Install dependencies
-        run: npm clean-install
-
-      - name: Build project
-        run: npm run build
-
-      - name: Upload to GitHub Pages
-        uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4.0.0
-        with:
-          path: dist
-          retention-days: 1
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5
-        with:
-          preview: true
-
-      - name: Create release tag
+      - name: SSH webserver
         env:
-          GH_REPO: ${{ github.repository }}
-          GH_TOKEN: ${{ github.token }}
+          SSHHOST: ${{ secrets.SSH_HOST }}
+          SSHPASS: ${{ secrets.SSH_PASS }}
+          SSHPORT: ${{ secrets.SSH_PORT }}
         run: |
-          DATETIME=$(date +'%Y.%m.%d-%H.%M') # Format: YYYY.MM.DD-HH.mm
-          tar -czf dist.tar.gz -C dist .
-          gh release create "v$DATETIME" --generate-notes 'dist.tar.gz#rdhar.dev'
-          echo "View release tag: https://github.com/$GH_REPO/releases/tag/v$DATETIME" >> $GITHUB_STEP_SUMMARY
+          sshpass -e ssh -o StrictHostKeyChecking=no -p $SSHPORT $SSHHOST << 'EOF'
+          whoami
+          uname -a
+          ls -la
+          EOF
+
+      # - name: Setup Node.js
+      #   uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
+      #   with:
+      #     cache: npm
+      #     cache-dependency-path: package-lock.json
+      #     node-version: 24
+
+      # - name: Install dependencies
+      #   run: npm clean-install
+
+      # - name: Build project
+      #   run: npm run build
+
+      # - name: Upload to GitHub Pages
+      #   uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4.0.0
+      #   with:
+      #     path: dist
+      #     retention-days: 1
+
+      # - name: Deploy to GitHub Pages
+      #   id: deployment
+      #   uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5
+      #   with:
+      #     preview: true
+
+      # - name: Create release tag
+      #   env:
+      #     GH_REPO: ${{ github.repository }}
+      #     GH_TOKEN: ${{ github.token }}
+      #   run: |
+      #     DATETIME=$(date +'%Y.%m.%d-%H.%M') # Format: YYYY.MM.DD-HH.mm
+      #     tar -czf dist.tar.gz -C dist .
+      #     gh release create "v$DATETIME" --generate-notes 'dist.tar.gz#rdhar.dev'
+      #     echo "View release tag: https://github.com/$GH_REPO/releases/tag/v$DATETIME" >> $GITHUB_STEP_SUMMARY
