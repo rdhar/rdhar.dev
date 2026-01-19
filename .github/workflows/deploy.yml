@@ -29,31 +29,28 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: SSH webserver
+      - name: Setup Node.js
+        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
+        with:
+          cache: npm
+          cache-dependency-path: package-lock.json
+          node-version: 24
+
+      - name: Install dependencies
+        run: npm clean-install
+
+      - name: Build project
+        run: npm run build
+
+      - name: Deploy to web server
         env:
           SSHHOST: ${{ secrets.SSH_HOST }}
           SSHPASS: ${{ secrets.SSH_PASS }}
           SSHPORT: ${{ secrets.SSH_PORT }}
           SSHUSER: ${{ secrets.SSH_USER }}
         run: |
-          sshpass -e ssh -o StrictHostKeyChecking=no -p $SSHPORT $SSHUSER@$SSHHOST << 'EOF'
-          whoami
-          uname -a
-          ls -la
-          EOF
-
-      # - name: Setup Node.js
-      #   uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
-      #   with:
-      #     cache: npm
-      #     cache-dependency-path: package-lock.json
-      #     node-version: 24
-
-      # - name: Install dependencies
-      #   run: npm clean-install
-
-      # - name: Build project
-      #   run: npm run build
+          sshpass -e ssh -o StrictHostKeyChecking=no -p $SSHPORT $SSHUSER@$SSHHOST "rm -rf ~/domains/www.rdhar.dev/public_html/*"
+          sshpass -e scp -o StrictHostKeyChecking=no -P $SSHPORT -r dist/* $SSHUSER@$SSHHOST:~/domains/www.rdhar.dev/public_html/
 
       # - name: Upload to GitHub Pages
       #   uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4.0.0
