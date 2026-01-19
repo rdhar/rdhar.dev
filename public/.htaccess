@@ -1,0 +1,19 @@
+# Contact
+Redirect 301 /meet     https://cal.com/rdhar/1-1
+Redirect 301 /cal      https://cal.com/rdhar/1-1
+Redirect 301 /call     https://cal.com/rdhar/1-1
+Redirect 301 /contact  https://cal.com/rdhar/1-1
+
+# Employment
+Redirect 301 /cv       https://drive.google.com/file/d/17ITBZFoJ-Tp9Vhq-HzKeV7TQmRoI8qR5/view?usp=sharing
+Redirect 301 /resume   https://drive.google.com/file/d/17ITBZFoJ-Tp9Vhq-HzKeV7TQmRoI8qR5/view?usp=sharing
+
+# Social
+Redirect 301 /bluesky  https://bsky.app/profile/rdhar.dev
+Redirect 301 /github   https://github.com/rdhar
+Redirect 301 /gravatar https://gravatar.com/rishavdhar
+Redirect 301 /linkedin https://www.linkedin.com/in/rishavdhar
+
+# Events
+Redirect 301 /aws35    https://www.linkedin.com/posts/rishavdhar_thanks-to-cirrushq-for-hosting-tonights-activity-7344062091609149458-pjDr
+Redirect 301 /iacconf  https://docs.google.com/presentation/d/1RIjLNMR3BtmYyTO7MGX42jo_C_8Qrqjo56l8OgvLvIs/edit?usp=sharing
