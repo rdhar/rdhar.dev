@@ -60,7 +60,7 @@ jobs:
           SSHPASS: ${{ secrets.SSH_PASS }}
           SSHPORT: ${{ secrets.SSH_PORT }}
           SSHUSER: ${{ secrets.SSH_USER }}
-          TARGET: ~/domains/github.rdhar.dev/public_html/
+          TARGET: ~/domains/www.rdhar.dev/public_html/
         run: |
           sshpass -e ssh -o StrictHostKeyChecking=no -p $SSHPORT $SSHUSER@$SSHHOST "rm -rf $TARGET*"
           sshpass -e scp -o StrictHostKeyChecking=no -P $SSHPORT -r dist/* $SSHUSER@$SSHHOST:$TARGET
