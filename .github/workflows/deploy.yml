@@ -34,8 +34,9 @@ jobs:
           SSHHOST: ${{ secrets.SSH_HOST }}
           SSHPASS: ${{ secrets.SSH_PASS }}
           SSHPORT: ${{ secrets.SSH_PORT }}
+          SSHUSER: ${{ secrets.SSH_USER }}
         run: |
-          sshpass -e ssh -o StrictHostKeyChecking=no -p $SSHPORT $SSHHOST << 'EOF'
+          sshpass -e ssh -o StrictHostKeyChecking=no -p $SSHPORT $SSHUSER@$SSHHOST << 'EOF'
           whoami
           uname -a
           ls -la
