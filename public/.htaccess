@@ -1,3 +1,10 @@
+# Headers
+Header set Content-Security-Policy   "default-src 'none'; frame-ancestors 'none'; child-src 'none'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; connect-src 'self' https://rdhar.goatcounter.com/count; img-src 'self'; style-src 'self' 'unsafe-inline'; base-uri 'self'; form-action 'self'"
+Header set Permissions-Policy        "camera=(), geolocation=(), microphone=(), fullscreen=(self)"
+Header set Referrer-Policy           "strict-origin-when-cross-origin"
+Header set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+Header set X-Content-Type-Options    "nosniff"
+
 # Contact
 Redirect 301 /meet     https://cal.com/rdhar/1-1
 Redirect 301 /cal      https://cal.com/rdhar/1-1
@@ -8,7 +15,7 @@ Redirect 301 /contact  https://cal.com/rdhar/1-1
 Redirect 301 /cv       https://drive.google.com/file/d/17ITBZFoJ-Tp9Vhq-HzKeV7TQmRoI8qR5/view?usp=sharing
 Redirect 301 /resume   https://drive.google.com/file/d/17ITBZFoJ-Tp9Vhq-HzKeV7TQmRoI8qR5/view?usp=sharing
 
-# Social
+# Socials
 Redirect 301 /bluesky  https://bsky.app/profile/rdhar.dev
 Redirect 301 /github   https://github.com/rdhar
 Redirect 301 /gravatar https://gravatar.com/rishavdhar
