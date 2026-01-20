@@ -1,5 +1,5 @@
 # Headers
-Header set Content-Security-Policy   "default-src 'none'; frame-ancestors 'none'; child-src 'none'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; connect-src 'self' https://rdhar.goatcounter.com/count; img-src 'self'; style-src 'self' 'unsafe-inline'; base-uri 'self'; form-action 'self'"
+Header set Content-Security-Policy   "default-src 'none'; frame-ancestors 'none'; child-src 'none'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; connect-src 'self' https://rdhar.goatcounter.com/count; img-src 'self' https://upload.wikimedia.org https://github.com https://private-user-images.githubusercontent.com; style-src 'self' 'unsafe-inline'; base-uri 'self'; form-action 'self'"
 Header set Permissions-Policy        "camera=(), geolocation=(), microphone=(), fullscreen=(self)"
 Header set Referrer-Policy           "strict-origin-when-cross-origin"
 Header set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
