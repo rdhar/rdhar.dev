@@ -7,8 +7,6 @@
     "url": "https://github.com/rdhar/rdhar.dev/issues"
   },
   "dependencies": {
-    "@fontsource/inter": "5.2.8",
-    "@fontsource/lora": "5.2.8",
     "clsx": "2.1.1",
     "tailwind-merge": "3.4.0"
   },
