@@ -18,18 +18,8 @@ const { title, description, image = "/nano.png" } = Astro.props;
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<link
-  rel="icon"
-  type="image/svg+xml"
-  href="/favicon-dark.svg"
-  media="(prefers-color-scheme: dark)"
-/>
-<link
-  rel="icon"
-  type="image/svg+xml"
-  href="/favicon-light.svg"
-  media="(prefers-color-scheme: light)"
-/>
+<link rel="icon" type="image/svg+xml" href="/favicon-dark.svg" media="(prefers-color-scheme: dark)" />
+<link rel="icon" type="image/svg+xml" href="/favicon-light.svg" media="(prefers-color-scheme: light)" />
 <link rel="icon" type="image/x-icon" href="/favicon-light.svg" />
 <meta name="generator" content={Astro.generator} />
 
@@ -58,21 +48,10 @@ const { title, description, image = "/nano.png" } = Astro.props;
 <ClientRouter />
 
 <!-- Web Analytics -->
-<script
-  data-goatcounter="https://rdhar.goatcounter.com/count"
-  async
-  src="https://gc.zgo.at/count.v5.js"
-  crossorigin="anonymous"
-  integrity="sha384-atnOLvQb9t+jTSipvd75X2yginT4PjVbqDdlJAmxMm+wYElFmeR6EmLP5bYeoRVQ"
-></script>
+<script data-goatcounter="https://rdhar.goatcounter.com/count" async src="https://gc.zgo.at/count.v5.js" crossorigin="anonymous" integrity="sha384-atnOLvQb9t+jTSipvd75X2yginT4PjVbqDdlJAmxMm+wYElFmeR6EmLP5bYeoRVQ"></script>
 
 <!-- RSS Link -->
-<link
-  rel="alternate"
-  type="application/rss+xml"
-  title={SITE.NAME}
-  href={new URL("rss.xml", Astro.site)}
-/>
+<link rel="alternate" type="application/rss+xml" title={SITE.NAME} href={new URL("rss.xml", Astro.site)} />
 
 <script is:inline>
   function init() {
@@ -104,13 +83,11 @@ const { title, description, image = "/nano.png" } = Astro.props;
       toggleTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
     });
 
-    window
-      .matchMedia("(prefers-color-scheme: dark)")
-      .addEventListener("change", (event) => {
-        if (localStorage.theme === "system" || !localStorage.theme) {
-          toggleTheme(event.matches);
-        }
-      });
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (event) => {
+      if (localStorage.theme === "system" || !localStorage.theme) {
+        toggleTheme(event.matches);
+      }
+    });
 
     document.addEventListener("scroll", onScroll);
   }
