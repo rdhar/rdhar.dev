@@ -3,19 +3,19 @@ version: 2
 
 updates:
   - package-ecosystem: github-actions
+    directory: /
     schedule:
       interval: daily
-    directory: /
     groups:
-      github-actions:
+      cicd:
         patterns:
           - "*"
 
-  - package-ecosystem: npm
+  - package-ecosystem: bun
+    directory: /
     schedule:
       interval: daily
-    directory: /
     groups:
-      npm:
+      bun:
         patterns:
           - "*"

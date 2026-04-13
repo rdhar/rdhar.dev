@@ -1,4 +1,11 @@
 {
+  "name": "rdhar.dev",
+  "homepage": "https://www.rdhar.dev",
+  "repository": "github:rdhar/rdhar.dev",
+  "description": "Personal portfolio and blog of Rishav Dhar, senior DevOps in Platform Engineering @Tucows.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "private": true,
   "author": {
     "name": "Rishav Dhar",
     "url": "https://www.rdhar.dev"
@@ -6,11 +13,25 @@
   "bugs": {
     "url": "https://github.com/rdhar/rdhar.dev/issues"
   },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/rdhar"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "astro": "bunx --bun astro",
+    "build": "bunx --bun astro check && bunx --bun astro build",
+    "dev": "bunx --bun astro dev",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "preview": "bunx --bun astro preview"
+  },
   "dependencies": {
     "clsx": "2.1.1",
     "tailwind-merge": "3.4.0"
   },
-  "description": "Personal portfolio and blog of Rishav Dhar, senior DevOps in Platform Engineering @Tucows.",
   "devDependencies": {
     "@astrojs/check": "0.9.6",
     "@astrojs/mdx": "4.3.13",
@@ -27,24 +48,5 @@
     "sharp": "0.34.5",
     "tailwindcss": "4.1.18",
     "typescript": "5.9.3"
-  },
-  "funding": {
-    "type": "github",
-    "url": "https://github.com/sponsors/rdhar"
-  },
-  "homepage": "https://www.rdhar.dev",
-  "license": "Apache-2.0",
-  "name": "rdhar.dev",
-  "private": true,
-  "repository": "github:rdhar/rdhar.dev",
-  "scripts": {
-    "astro": "astro",
-    "build": "astro check && astro build",
-    "dev": "astro dev",
-    "dev:network": "astro dev --host",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "preview": "astro preview",
-    "preview:network": "astro preview --host"
   }
 }
