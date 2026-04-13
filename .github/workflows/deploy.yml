@@ -15,29 +15,35 @@ jobs:
   Build:
     runs-on: ubuntu-24.04
 
-    permissions:
-      contents: write # Required for creating release tags.
+    concurrency:
+      cancel-in-progress: true
+      group: ${{ github.workflow }}-${{ github.ref }}
 
     steps:
-      - name: Checkout branch
+      - &checkout
+        name: Checkout branch
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           persist-credentials: false
 
-      - name: Setup Bun
+      - &setup-bun
+        name: Setup Bun
         uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
 
-      - name: Cache dependencies
+      - &cache-deps
+        name: Cache dependencies
         uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
         with:
           path: ~/.bun/install/cache
           key: bun-${{ runner.os }}-${{ hashFiles('bun.lock') }}
           restore-keys: bun-${{ runner.os }}-
 
-      - name: Install dependencies
+      - &install-deps
+        name: Install dependencies
         run: bun install --frozen-lockfile
 
-      - name: Build project
+      - &build-project
+        name: Build project
         run: bun run build
 
       - name: Upload to GitHub Pages
@@ -46,29 +52,6 @@ jobs:
         with:
           path: dist
           retention-days: 1
-
-      - name: Upload to web server
-        if: github.event_name != 'merge_group'
-        env:
-          SSHHOST: ${{ secrets.SSH_HOST }}
-          SSHPASS: ${{ secrets.SSH_PASS }}
-          SSHPORT: ${{ secrets.SSH_PORT }}
-          SSHUSER: ${{ secrets.SSH_USER }}
-          TARGET: ~/domains/www.rdhar.dev/public_html/
-        run: |
-          sshpass -e ssh -o StrictHostKeyChecking=no -p $SSHPORT $SSHUSER@$SSHHOST "rm -rf $TARGET*"
-          sshpass -e scp -o StrictHostKeyChecking=no -P $SSHPORT -r dist/. $SSHUSER@$SSHHOST:$TARGET
-
-      - name: Create release tag
-        if: github.event_name != 'merge_group'
-        env:
-          GH_REPO: ${{ github.repository }}
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          DATETIME=$(date +'%Y.%m.%d-%H.%M') # Format: YYYY.MM.DD-HH.mm
-          tar -czf dist.tar.gz -C dist .
-          gh release create "v$DATETIME" --generate-notes 'dist.tar.gz#rdhar.dev'
-          echo "View release tag: https://github.com/$GH_REPO/releases/tag/v$DATETIME" >> $GITHUB_STEP_SUMMARY
 
   Deploy:
     if: github.event_name != 'merge_group'
@@ -93,3 +76,43 @@ jobs:
         uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5.0.0
         with:
           preview: true
+
+  Publish:
+    if: github.event_name != 'merge_group'
+    needs: Build
+    runs-on: ubuntu-24.04
+
+    permissions:
+      contents: write # Required for creating release tags.
+
+    concurrency:
+      cancel-in-progress: true
+      group: ${{ github.workflow }}-${{ github.ref }}-publish
+
+    steps:
+      - *checkout
+      - *setup-bun
+      - *cache-deps
+      - *install-deps
+      - *build-project
+
+      - name: Upload to web server
+        env:
+          SSHHOST: ${{ secrets.SSH_HOST }}
+          SSHPASS: ${{ secrets.SSH_PASS }}
+          SSHPORT: ${{ secrets.SSH_PORT }}
+          SSHUSER: ${{ secrets.SSH_USER }}
+          TARGET: ~/domains/www.rdhar.dev/public_html/
+        run: |
+          sshpass -e ssh -o StrictHostKeyChecking=no -p $SSHPORT $SSHUSER@$SSHHOST "rm -rf $TARGET*"
+          sshpass -e scp -o StrictHostKeyChecking=no -P $SSHPORT -r dist/. $SSHUSER@$SSHHOST:$TARGET
+
+      - name: Create release tag
+        env:
+          GH_REPO: ${{ github.repository }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          DATETIME=$(date +'%Y.%m.%d-%H.%M') # Format: YYYY.MM.DD-HH.mm
+          tar -czf dist.tar.gz -C dist .
+          gh release create "v$DATETIME" --generate-notes 'dist.tar.gz#rdhar.dev'
+          echo "View release tag: https://github.com/$GH_REPO/releases/tag/v$DATETIME" >> $GITHUB_STEP_SUMMARY
