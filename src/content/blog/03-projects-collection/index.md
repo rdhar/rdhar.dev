@@ -1,7 +1,7 @@
 ---
 title: "Projects Collection"
 description: "How to add projects to your portfolio."
-date: "Mar 20 2024"
+pubDate: "Mar 20 2024"
 ---
 
 The `projects` collections is found in `src/content/projects`.
@@ -28,7 +28,7 @@ All content must be preceded by required metadata in the markdown file in `yaml`
 ---
 title: "My awesome project"
 description: "A description of my project."
-date: "Mar 22 2024"
+pubDate: "Mar 22 2024"
 draft: false
 ---
 ```
@@ -50,7 +50,7 @@ All that's left to do is write your content under the metadata.
 ---
 title: "My awesome project"
 description: "A description of my project."
-date: "Mar 22 2024"
+pubDate: "Mar 22 2024"
 draft: false
 ---
 

@@ -1,4 +1,10 @@
 {
+  "name": "rdhar.dev",
+  "homepage": "https://www.rdhar.dev",
+  "repository": "github:rdhar/rdhar.dev",
+  "description": "Personal blog and portfolio of Rishav Dhar, Principal Engineer of Platform DevOps @Tucows.",
+  "license": "Apache-2.0",
+  "type": "module",
   "author": {
     "name": "Rishav Dhar",
     "url": "https://www.rdhar.dev"
@@ -6,11 +12,21 @@
   "bugs": {
     "url": "https://github.com/rdhar/rdhar.dev/issues"
   },
-  "dependencies": {
-    "clsx": "2.1.1",
-    "tailwind-merge": "3.4.0"
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/rdhar"
   },
-  "description": "Personal portfolio and blog of Rishav Dhar, senior DevOps in Platform Engineering @Tucows.",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "astro": "bunx --bun astro",
+    "build": "bunx --bun astro check && bunx --bun astro build",
+    "dev": "bunx --bun astro dev",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "preview": "bunx --bun astro preview"
+  },
   "devDependencies": {
     "@astrojs/check": "0.9.6",
     "@astrojs/mdx": "4.3.13",
@@ -18,33 +34,19 @@
     "@astrojs/sitemap": "3.7.0",
     "@tailwindcss/typography": "0.5.19",
     "@tailwindcss/vite": "4.1.18",
+    "@types/bun": "1.3.12",
     "@typescript-eslint/eslint-plugin": "8.53.0",
     "@typescript-eslint/parser": "8.53.0",
     "astro": "5.16.11",
-    "eslint": "9.39.2",
+    "clsx": "2.1.1",
     "eslint-plugin-astro": "1.5.0",
     "eslint-plugin-jsx-a11y": "6.10.2",
+    "eslint": "9.39.2",
+    "prettier-plugin-astro": "0.14.1",
+    "prettier": "3.8.2",
     "sharp": "0.34.5",
+    "tailwind-merge": "3.4.0",
     "tailwindcss": "4.1.18",
     "typescript": "5.9.3"
-  },
-  "funding": {
-    "type": "github",
-    "url": "https://github.com/sponsors/rdhar"
-  },
-  "homepage": "https://www.rdhar.dev",
-  "license": "Apache-2.0",
-  "name": "rdhar.dev",
-  "private": true,
-  "repository": "github:rdhar/rdhar.dev",
-  "scripts": {
-    "astro": "astro",
-    "build": "astro check && astro build",
-    "dev": "astro dev",
-    "dev:network": "astro dev --host",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "preview": "astro preview",
-    "preview:network": "astro preview --host"
   }
 }
