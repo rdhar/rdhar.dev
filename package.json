@@ -2,10 +2,9 @@
   "name": "rdhar.dev",
   "homepage": "https://www.rdhar.dev",
   "repository": "github:rdhar/rdhar.dev",
-  "description": "Personal portfolio and blog of Rishav Dhar, senior DevOps in Platform Engineering @Tucows.",
+  "description": "Personal blog of Rishav Dhar, Principal Engineer of Platform DevOps @Tucows.",
   "license": "Apache-2.0",
   "type": "module",
-  "private": true,
   "author": {
     "name": "Rishav Dhar",
     "url": "https://www.rdhar.dev"
@@ -28,10 +27,6 @@
     "lint:fix": "eslint . --fix",
     "preview": "bunx --bun astro preview"
   },
-  "dependencies": {
-    "clsx": "2.1.1",
-    "tailwind-merge": "3.4.0"
-  },
   "devDependencies": {
     "@astrojs/check": "0.9.6",
     "@astrojs/mdx": "4.3.13",
@@ -39,13 +34,18 @@
     "@astrojs/sitemap": "3.7.0",
     "@tailwindcss/typography": "0.5.19",
     "@tailwindcss/vite": "4.1.18",
+    "@types/bun": "1.3.12",
     "@typescript-eslint/eslint-plugin": "8.53.0",
     "@typescript-eslint/parser": "8.53.0",
     "astro": "5.16.11",
-    "eslint": "9.39.2",
+    "clsx": "2.1.1",
     "eslint-plugin-astro": "1.5.0",
     "eslint-plugin-jsx-a11y": "6.10.2",
+    "eslint": "9.39.2",
+    "prettier-plugin-astro": "0.14.1",
+    "prettier": "3.8.2",
     "sharp": "0.34.5",
+    "tailwind-merge": "3.4.0",
     "tailwindcss": "4.1.18",
     "typescript": "5.9.3"
   }
