@@ -2,7 +2,7 @@
   "name": "rdhar.dev",
   "homepage": "https://www.rdhar.dev",
   "repository": "github:rdhar/rdhar.dev",
-  "description": "Personal blog of Rishav Dhar, Principal Engineer of Platform DevOps @Tucows.",
+  "description": "Personal blog and portfolio of Rishav Dhar, Principal Engineer of Platform DevOps @Tucows.",
   "license": "Apache-2.0",
   "type": "module",
   "author": {
