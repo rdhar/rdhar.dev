@@ -1,7 +1,7 @@
 ---
 title: "Work Collection"
 description: "How to add work experience."
-date: "Mar 19 2024"
+pubDate: "Mar 19 2024"
 ---
 
 The `work` collections is found in `src/content/work`.
@@ -49,7 +49,7 @@ All that's left to do is write your content under the metadata.
 ---
 title: "My awesome project"
 description: "A description of my project."
-date: "Mar 22 2024"
+pubDate: "Mar 22 2024"
 draft: false
 ---
 
