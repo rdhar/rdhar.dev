@@ -14,7 +14,7 @@ export function formatDate(date: Date) {
 }
 
 export function readingTime(html: string) {
-  let textOnly = "";
+  const textOnlyChars: string[] = [];
   let inTag = false;
   let quoteChar = "";
 
@@ -30,12 +30,14 @@ export function readingTime(html: string) {
     } else if (char === "<") {
       inTag = true;
     } else {
-      textOnly += char;
+      textOnlyChars.push(char);
     }
   }
 
-  const wordCount = textOnly.split(/\s+/).length;
-  const readingTimeMinutes = ((wordCount / 200) + 1).toFixed();
+  const textOnly = textOnlyChars.join("");
+  const trimmedText = textOnly.trim();
+  const safeWordCount = trimmedText ? trimmedText.split(/\s+/).length : 0;
+  const readingTimeMinutes = ((safeWordCount / 200) + 1).toFixed();
   return `${readingTimeMinutes} min read`;
 }
 
