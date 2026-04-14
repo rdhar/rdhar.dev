@@ -24,7 +24,7 @@ In the above example, two static pages will be generated, based on the existence
 
 All content must be preceded by required metadata in the markdown file in `yaml` format, and be enclosed by triple dashes. --- ---
 
-```mdx
+```md
 ---
 title: "My awesome project"
 description: "A description of my project."
@@ -46,7 +46,7 @@ Metadata fields
 
 All that's left to do is write your content under the metadata.
 
-```mdx
+```md
 ---
 title: "My awesome project"
 description: "A description of my project."
