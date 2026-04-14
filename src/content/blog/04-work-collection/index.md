@@ -22,7 +22,7 @@ In the above example, four entries on the /work page will be generated.
 
 All content must be preceded by required metadata in the markdown file in `yaml` format, and be enclosed by triple dashes. --- ---
 
-```mdx
+```md
 ---
 company: "McDonalds"
 role: "French Fryer"
@@ -45,7 +45,7 @@ Now or Present instead of a date._
 
 All that's left to do is write your content under the metadata.
 
-```mdx
+```md
 ---
 title: "My awesome project"
 description: "A description of my project."

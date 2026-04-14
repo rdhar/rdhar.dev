@@ -1,21 +1,10 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import Container from "@components/Container.astro";
 import PageLayout from "@layouts/PageLayout.astro";
-import ArrowCard from "@components/ArrowCard.astro";
 import Link from "@components/Link.astro";
 import { dateRange } from "@lib/utils";
 import { SITE, HOME, SOCIALS } from "@consts";
-
-const blog = (await getCollection("blog"))
-  .filter((post) => !post.data.draft)
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, SITE.NUM_POSTS_ON_HOMEPAGE);
-
-const projects = (await getCollection("projects"))
-  .filter((project) => !project.data.draft)
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, SITE.NUM_PROJECTS_ON_HOMEPAGE);
 
 const allwork = (await getCollection("work"))
   .sort(
@@ -27,7 +16,7 @@ const allwork = (await getCollection("work"))
 
 const work = await Promise.all(
   allwork.map(async (item) => {
-    const { Content } = await item.render();
+    const { Content } = await render(item);
     return { ...item, Content };
   }),
 );
