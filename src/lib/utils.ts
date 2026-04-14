@@ -14,9 +14,37 @@ export function formatDate(date: Date) {
 }
 
 export function readingTime(html: string) {
-  const textOnly = html.replace(/<[^>]+>/g, "");
-  const wordCount = textOnly.split(/\s+/).length;
-  const readingTimeMinutes = ((wordCount / 200) + 1).toFixed();
+  const textOnlyChars: string[] = [];
+  let inTag = false;
+  let quoteChar: "\"" | "'" | null = null;
+  let escapedInQuote = false;
+
+  for (const char of html) {
+    if (inTag) {
+      if (quoteChar !== null) {
+        if (escapedInQuote) {
+          escapedInQuote = false;
+        } else if (char === "\\") {
+          escapedInQuote = true;
+        } else if (char === quoteChar) {
+          quoteChar = null;
+        }
+      } else if (char === "\"" || char === "'") {
+        quoteChar = char;
+      } else if (char === ">") {
+        inTag = false;
+      }
+    } else if (char === "<") {
+      inTag = true;
+    } else {
+      textOnlyChars.push(char);
+    }
+  }
+
+  const textOnly = textOnlyChars.join("");
+  const trimmedText = textOnly.trim();
+  const safeWordCount = trimmedText ? trimmedText.split(/\s+/).length : 0;
+  const readingTimeMinutes = ((safeWordCount / 200) + 1).toFixed();
   return `${readingTimeMinutes} min read`;
 }
 
