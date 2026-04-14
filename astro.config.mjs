@@ -7,6 +7,7 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   site: "https://www.rdhar.dev",
   integrations: [mdx(), sitemap()],
+  markdown: { syntaxHighlight: "prism" },
   vite: { plugins: [tailwindcss()] },
   security: {
     csp: {
