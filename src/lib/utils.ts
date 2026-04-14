@@ -16,12 +16,19 @@ export function formatDate(date: Date) {
 export function readingTime(html: string) {
   const textOnlyChars: string[] = [];
   let inTag = false;
-  let quoteChar = "";
+  let quoteChar: "\"" | "'" | null = null;
+  let escapedInQuote = false;
 
   for (const char of html) {
     if (inTag) {
-      if (quoteChar) {
-        if (char === quoteChar) quoteChar = "";
+      if (quoteChar !== null) {
+        if (escapedInQuote) {
+          escapedInQuote = false;
+        } else if (char === "\\") {
+          escapedInQuote = true;
+        } else if (char === quoteChar) {
+          quoteChar = null;
+        }
       } else if (char === "\"" || char === "'") {
         quoteChar = char;
       } else if (char === ">") {
