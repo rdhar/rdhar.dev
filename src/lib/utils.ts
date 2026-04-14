@@ -14,7 +14,26 @@ export function formatDate(date: Date) {
 }
 
 export function readingTime(html: string) {
-  const textOnly = html.replace(/[<>]/g, "");
+  let textOnly = "";
+  let inTag = false;
+  let quoteChar = "";
+
+  for (const char of html) {
+    if (inTag) {
+      if (quoteChar) {
+        if (char === quoteChar) quoteChar = "";
+      } else if (char === "\"" || char === "'") {
+        quoteChar = char;
+      } else if (char === ">") {
+        inTag = false;
+      }
+    } else if (char === "<") {
+      inTag = true;
+    } else {
+      textOnly += char;
+    }
+  }
+
   const wordCount = textOnly.split(/\s+/).length;
   const readingTimeMinutes = ((wordCount / 200) + 1).toFixed();
   return `${readingTimeMinutes} min read`;
