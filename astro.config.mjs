@@ -10,17 +10,22 @@ export default defineConfig({
   vite: { plugins: [tailwindcss()] },
   security: {
     csp: {
-      directives: [
-        "default-src 'none'",
-        "base-uri 'self'",
-        "form-action 'self'",
-        "frame-ancestors 'none'",
-        "script-src 'self' https://gc.zgo.at",
-        "connect-src 'self' https://rdhar.goatcounter.com/count",
-        "img-src 'self' https://github.com https://private-user-images.githubusercontent.com https://upload.wikimedia.org",
-        "font-src 'self'",
-        "style-src 'self'",
-      ],
+      directives: {
+        "default-src": ["'none'"],
+        "base-uri": ["'self'"],
+        "form-action": ["'self'"],
+        "frame-ancestors": ["'none'"],
+        "script-src": ["'self'", "https://gc.zgo.at"],
+        "connect-src": ["'self'", "https://rdhar.goatcounter.com/count"],
+        "img-src": [
+          "'self'",
+          "https://github.com",
+          "https://private-user-images.githubusercontent.com",
+          "https://upload.wikimedia.org",
+        ],
+        "font-src": ["'self'"],
+        "style-src": ["'self'"],
+      },
     },
   },
   server: {
