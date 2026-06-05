@@ -1,14 +1,13 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 import PageLayout from "@layouts/PageLayout.astro";
 import Container from "@components/Container.astro";
 import ArrowCard from "@components/ArrowCard.astro";
+import { getPublishedBlogPosts } from "@lib/content";
 import { BLOG } from "@consts";
 
-const data = (await getCollection("blog"))
-  .filter(post => !post.data.draft)
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-  
+const data = await getPublishedBlogPosts();
+
 type Acc = {
   [year: string]: CollectionEntry<"blog">[];
 }

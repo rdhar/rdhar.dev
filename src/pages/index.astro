@@ -1,18 +1,13 @@
 ---
-import { getCollection, render } from "astro:content";
+import { render } from "astro:content";
 import Container from "@components/Container.astro";
 import PageLayout from "@layouts/PageLayout.astro";
 import Link from "@components/Link.astro";
+import { getSortedWork } from "@lib/content";
 import { dateRange } from "@lib/utils";
 import { HOME, SITE, SOCIALS } from "@consts";
 
-const allwork = (await getCollection("work"))
-  .sort(
-    (a, b) =>
-      new Date(b.data.dateStart).valueOf() -
-      new Date(a.data.dateStart).valueOf(),
-  )
-  .slice(0, SITE.NUM_WORKS_ON_HOMEPAGE);
+const allwork = (await getSortedWork()).slice(0, SITE.NUM_WORKS_ON_HOMEPAGE);
 
 const work = await Promise.all(
   allwork.map(async (item) => {
