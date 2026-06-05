@@ -1,11 +1,13 @@
 import rss from "@astrojs/rss";
 import type { APIContext } from "astro";
-import { getCollection } from "astro:content";
+import { getPublishedBlogPosts, getPublishedProjects } from "@lib/content";
 import { HOME } from "@consts";
 
 export async function GET(context: APIContext) {
-  const blog = (await getCollection("blog")).filter(post => !post.data.draft);
-  const projects = (await getCollection("projects")).filter(project => !project.data.draft);
+  const [blog, projects] = await Promise.all([
+    getPublishedBlogPosts(),
+    getPublishedProjects(),
+  ]);
 
   const items = [...blog, ...projects]
     .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
