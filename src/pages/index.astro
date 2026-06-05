@@ -4,7 +4,7 @@ import Container from "@components/Container.astro";
 import PageLayout from "@layouts/PageLayout.astro";
 import Link from "@components/Link.astro";
 import { dateRange } from "@lib/utils";
-import { SITE, HOME, SOCIALS } from "@consts";
+import { HOME, SITE, SOCIALS } from "@consts";
 
 const allwork = (await getCollection("work"))
   .sort(
@@ -120,12 +120,12 @@ const work = await Promise.all(
         <article>
           <p>
             If you want to get in touch with me about something or just to say
-            hi, reach out on social media or send me an email.
+            hi, reach out on social media.
           </p>
         </article>
         <ul class="flex flex-wrap gap-2">
           {
-            SOCIALS.map((SOCIAL) => (
+            SOCIALS.map((SOCIAL, index) => (
               <li class="flex gap-x-2 text-nowrap">
                 <Link
                   href={SOCIAL.HREF}
@@ -134,18 +134,10 @@ const work = await Promise.all(
                 >
                   {SOCIAL.NAME}
                 </Link>
-                {"/"}
+                {index < SOCIALS.length - 1 && "/"}
               </li>
             ))
           }
-          <li class="line-clamp-1">
-            <Link
-              href={`mailto:${SITE.EMAIL}`}
-              aria-label={`Email ${SITE.NAME}`}
-            >
-              {SITE.EMAIL}
-            </Link>
-          </li>
         </ul>
       </section>
     </div>
