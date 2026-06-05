@@ -5,12 +5,19 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+const fullDateFormatter = new Intl.DateTimeFormat("en-US", {
+  month: "short",
+  day: "2-digit",
+  year: "numeric",
+});
+
+const monthYearFormatter = new Intl.DateTimeFormat("en-US", {
+  month: "short",
+  year: "numeric",
+});
+
 export function formatDate(date: Date) {
-  return Intl.DateTimeFormat("en-US", {
-    month: "short",
-    day: "2-digit",
-    year: "numeric"
-  }).format(date);
+  return fullDateFormatter.format(date);
 }
 
 export function readingTime(html: string) {
@@ -43,26 +50,19 @@ export function readingTime(html: string) {
 
   const textOnly = textOnlyChars.join("");
   const trimmedText = textOnly.trim();
-  const safeWordCount = trimmedText ? trimmedText.split(/\s+/).length : 0;
-  const readingTimeMinutes = ((safeWordCount / 200) + 1).toFixed();
-  return `${readingTimeMinutes} min read`;
+  const wordCount = trimmedText ? trimmedText.split(/\s+/).length : 0;
+  const minutes = Math.max(1, Math.ceil(wordCount / 200));
+  return `${minutes} min read`;
 }
 
 export function dateRange(startDate: Date, endDate?: Date | string): string {
-  const startMonth = startDate.toLocaleString("default", { month: "short" });
-  const startYear = startDate.getFullYear().toString();
-  let endMonth;
-  let endYear;
+  const start = monthYearFormatter.format(startDate);
+  const end =
+    endDate === undefined
+      ? ""
+      : typeof endDate === "string"
+        ? endDate
+        : monthYearFormatter.format(endDate);
 
-  if (endDate) {
-    if (typeof endDate === "string") {
-      endMonth = "";
-      endYear = endDate;
-    } else {
-      endMonth = endDate.toLocaleString("default", { month: "short" });
-      endYear = endDate.getFullYear().toString();
-    }
-  }
-
-  return `${startMonth}${startYear} - ${endMonth}${endYear}`;
+  return `${start} - ${end}`;
 }
