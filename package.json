@@ -44,7 +44,7 @@
     "eslint-plugin-astro": "2.1.1",
     "eslint-plugin-jsx-a11y": "6.10.2",
     "globals": "17.7.0",
-    "prettier": "3.8.4",
+    "prettier": "3.8.5",
     "prettier-plugin-astro": "0.14.1",
     "sharp": "0.35.2",
     "tailwind-merge": "3.6.0",
