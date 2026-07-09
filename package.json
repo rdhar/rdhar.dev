@@ -44,11 +44,11 @@
     "eslint-plugin-astro": "2.1.1",
     "eslint-plugin-jsx-a11y": "6.10.2",
     "globals": "17.7.0",
-    "prettier": "3.9.4",
+    "prettier": "3.9.5",
     "prettier-plugin-astro": "0.14.1",
     "sharp": "0.35.3",
     "tailwind-merge": "3.6.0",
     "tailwindcss": "4.3.2",
-    "typescript": "6.0.3"
+    "typescript": "7.0.2"
   }
 }
