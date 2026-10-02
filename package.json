@@ -37,7 +37,7 @@
     "@types/bun": "1.4.2",
     "astro": "7.3.5",
     "clsx": "2.1.1",
-    "oxlint": "1.85.0",
+    "oxlint": "1.86.0",
     "prettier": "3.9.9",
     "prettier-plugin-astro": "1.1.0",
     "sharp": "0.35.5",
