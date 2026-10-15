@@ -34,7 +34,7 @@
     "@astrojs/sitemap": "3.7.4",
     "@tailwindcss/typography": "0.5.20",
     "@tailwindcss/vite": "4.3.3",
-    "@types/bun": "1.4.2",
+    "@types/bun": "1.4.3",
     "astro": "7.3.8",
     "clsx": "2.1.1",
     "oxlint": "1.87.0",
