@@ -7,10 +7,11 @@ interface Props {
   description: string;
   image?: ImageMetadata;
   pubDate?: Date;
+  noindex?: boolean;
 }
 
 const name = "Rishav Dhar";
-const { title, description, image, pubDate } = Astro.props;
+const { title, description, image, pubDate, noindex } = Astro.props;
 const fullTitle = title ? `${title} · ${name}` : name;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = image && new URL((await getImage({ src: image, width: 1200, format: "jpeg" })).src, Astro.site);
@@ -19,7 +20,7 @@ const ogImage = image && new URL((await getImage({ src: image, width: 1200, form
 <title>{fullTitle}</title>
 <meta name="description" content={description} />
 <meta name="author" content={name} />
-<link rel="canonical" href={canonical} />
+{noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
 <link rel="alternate" type="application/rss+xml" title={name} href={new URL("rss.xml", Astro.site)} />
 <link rel="sitemap" href="/sitemap-index.xml" />
 

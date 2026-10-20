@@ -7,11 +7,11 @@ import Footer from "@/components/global/Footer.astro";
 import Navigation from "@/components/global/Navigation.astro";
 // Title, description and optional image or date feed the SEO tags:
 // <BaseLayout title="Blog" description="...">
-const { title, description, image, pubDate } = Astro.props;
+const { title, description, image, pubDate, noindex } = Astro.props;
 ---
 <html lang="en-GB">
   <head>
-    <BaseHead title={title} description={description} image={image} pubDate={pubDate} />
+    <BaseHead title={title} description={description} image={image} pubDate={pubDate} noindex={noindex} />
   </head>
   <body class="flex flex-col bg-background min-h-svh">
     <Navigation />
