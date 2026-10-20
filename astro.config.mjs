@@ -37,7 +37,7 @@ export default defineConfig({
         "font-src 'self'",
       ],
       scriptDirective: {
-        resources: ["'self'", "https://gc.zgo.at"],
+        resources: ["'self'"],
       },
       styleDirective: {
         resources: ["'self'"],
