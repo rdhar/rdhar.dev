@@ -11,29 +11,35 @@
   navigation: auto;
 }
 
+/* Persistent chrome stays put; only <main> crossfades quickly. */
+header {
+  view-transition-name: site-header;
+}
+
+main {
+  view-transition-name: site-main;
+}
+
+footer {
+  view-transition-name: site-footer;
+}
+
 ::view-transition-group(*) {
-  animation-duration: 0.9s;
-  animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+  animation-duration: 0.2s;
+  animation-timing-function: ease-out;
 }
 
-::view-transition-old(root) {
-  animation: 0.35s ease both view-fade-out;
-}
-
+::view-transition-old(root),
 ::view-transition-new(root) {
-  animation: 0.5s ease 0.3s both view-fade-in;
+  animation: none;
 }
 
-@keyframes view-fade-out {
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes view-fade-in {
-  from {
-    opacity: 0;
-  }
+::view-transition-old(site-header),
+::view-transition-new(site-header),
+::view-transition-old(site-footer),
+::view-transition-new(site-footer) {
+  animation: none;
+  mix-blend-mode: normal;
 }
 
 @media (prefers-reduced-motion: reduce) {
