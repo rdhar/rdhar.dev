@@ -49,8 +49,6 @@ As before, a provisional `plan` is generated in a PR and reviewed by peers. This
 
 Safe, but sluggish. We trade developer velocity for infrastructure safety, and not always gracefully.
 
-![Isometric illustration of a person standing on a platform and pointing at a dashboard with a bar chart and an alert icon](../../images/blog/terraform-tofu-merge-queues/illustration.webp)
-
 ## Case 3: apply with merge queue
 
 Merge queues have been GitHub-native since [2023](https://github.blog/news-insights/product-news/github-merge-queue-is-generally-available/). They improve developer experience by making sure each PR in the queue is compatible and passes status checks before changes reach production at scale.
