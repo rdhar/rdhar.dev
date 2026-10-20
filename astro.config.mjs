@@ -6,16 +6,24 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   site: "https://www.rdhar.dev",
   trailingSlash: "always",
+  build: { inlineStylesheets: "always" },
   integrations: [sitemap()],
   markdown: { syntaxHighlight: false },
   vite: { plugins: [tailwindcss()] },
   fonts: [
     {
-      provider: fontProviders.google(),
-      name: "Inter",
-      cssVariable: "--font-inter",
-      weights: [400, 500],
-      subsets: ["latin"],
+      provider: fontProviders.local(),
+      name: "Libron",
+      cssVariable: "--font-libron",
+      fallbacks: ["serif"],
+      options: {
+        variants: [
+          { src: ["./src/fonts/libron/Libron-Regular.woff2"], weight: 400, style: "normal" },
+          { src: ["./src/fonts/libron/Libron-Italic.woff2"], weight: 400, style: "italic" },
+          { src: ["./src/fonts/libron/Libron-Bold.woff2"], weight: 700, style: "normal" },
+          { src: ["./src/fonts/libron/Libron-BoldItalic.woff2"], weight: 700, style: "italic" },
+        ],
+      },
     },
   ],
   security: {

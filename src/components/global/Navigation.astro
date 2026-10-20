@@ -17,7 +17,7 @@ const actions = [
 <header>
   <Wrapper variant="standard">
     <nav class="grid grid-cols-2 gap-4 py-4">
-      <Text tag="a" href="/" variant="textSM" class="w-fit font-medium text-foreground">
+      <Text tag="a" href="/" variant="textSM" class="w-fit text-foreground">
         Rishav Dhar
       </Text>
       <div class="flex flex-col justify-between gap-1 sm:flex-row">
@@ -25,10 +25,10 @@ const actions = [
           {
             links.map((link, index) => (
               <li>
-                <Text tag="a" href={link.href} variant="textSM" class="font-medium text-foreground hover:text-muted-foreground">
+                <Text tag="a" href={link.href} variant="textSM" class="text-foreground hover:text-muted-foreground">
                   {link.label}
                 </Text>
-                {index < links.length - 1 && <span class="text-sm font-medium text-foreground">,&nbsp;</span>}
+                {index < links.length - 1 && <span class="text-sm text-foreground">,&nbsp;</span>}
               </li>
             ))
           }
@@ -37,10 +37,10 @@ const actions = [
           {
             actions.map((action, index) => (
               <li>
-                <Text tag="a" href={action.href} variant="textSM" class="font-medium text-foreground hover:text-muted-foreground">
+                <Text tag="a" href={action.href} variant="textSM" class="text-foreground hover:text-muted-foreground">
                   {action.label}
                 </Text>
-                {index < actions.length - 1 && <span class="text-sm font-medium text-foreground">,&nbsp;</span>}
+                {index < actions.length - 1 && <span class="text-sm text-foreground">,&nbsp;</span>}
               </li>
             ))
           }

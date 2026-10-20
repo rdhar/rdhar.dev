@@ -15,7 +15,7 @@ const date = post.data.pubDate.toLocaleDateString("en-GB", { year: "numeric", mo
 
 <li>
   <a href={`/blog/${post.id}/`} class="group flex h-full flex-col gap-2 border-t border-muted py-4">
-    <Text tag={headingTag} variant="textSM" class="font-medium text-foreground transition-colors duration-300 group-hover:text-muted-foreground motion-reduce:transition-none">
+    <Text tag={headingTag} variant="textSM" class="text-foreground transition-colors duration-300 group-hover:text-muted-foreground motion-reduce:transition-none">
       {post.data.title}
     </Text>
     <Text tag="p" variant="textSM" class="max-w-md text-muted-foreground">
