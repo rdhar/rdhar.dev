@@ -17,7 +17,7 @@ const resources = [
   { label: "Source", href: "https://github.com/rdhar/rdhar.dev" },
 ];
 const time = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/London", hour: "2-digit", minute: "2-digit" }).format(new Date());
-const linkClass = "w-fit font-medium text-foreground transition-colors duration-300 hover:text-muted-foreground motion-reduce:transition-none";
+const linkClass = "w-fit text-foreground transition-colors duration-300 hover:text-muted-foreground motion-reduce:transition-none";
 ---
 
 <footer class="overflow-hidden">
@@ -47,14 +47,14 @@ const linkClass = "w-fit font-medium text-foreground transition-colors duration-
         }
       </ul>
       <div class="flex flex-col lg:items-end">
-        <Text tag="p" variant="textSM" class="font-medium text-foreground">Edinburgh</Text>
-        <Text tag="p" variant="textSM" class="font-medium text-muted-foreground">
+        <Text tag="p" variant="textSM" class="text-foreground">Edinburgh</Text>
+        <Text tag="p" variant="textSM" class="text-muted-foreground">
           <time data-clock>{time}</time>
         </Text>
       </div>
     </div>
     <p
-      class="font-display text-6xl font-medium leading-none tracking-tight text-foreground md:text-8xl"
+      class="text-6xl leading-none tracking-tight text-foreground md:text-8xl"
       aria-hidden="true"
     >
       Rishav Dhar

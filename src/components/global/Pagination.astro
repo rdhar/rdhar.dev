@@ -26,13 +26,13 @@ const links = [
       {
         links.map((link) => (
           <a href={link.href} class="group flex flex-col gap-2">
-            <Text tag="span" variant="textSM" class="text-muted-foreground">
+            <Text tag="span" variant="textSM" class="text-muted-foreground small-caps">
               {link.label}
             </Text>
             <Text
               tag="span"
               variant="displayMD"
-              class="font-display font-medium leading-none tracking-tight text-foreground transition-colors duration-300 group-hover:text-muted-foreground motion-reduce:transition-none"
+              class="leading-none tracking-tight text-foreground transition-colors duration-300 group-hover:text-muted-foreground motion-reduce:transition-none"
             >
               {link.title}
             </Text>

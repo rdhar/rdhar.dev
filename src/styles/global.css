@@ -3,6 +3,10 @@
 @import "./fonts.css";
 @plugin "@tailwindcss/typography";
 
+@utility small-caps {
+  font-variant-caps: small-caps;
+}
+
 @view-transition {
   navigation: auto;
 }

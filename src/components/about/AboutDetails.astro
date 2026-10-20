@@ -43,11 +43,11 @@ const groups = [
 
 <section>
   <Wrapper variant="standard" class="pb-24">
-    <dl class="flex max-w-4xl flex-col gap-6 font-display text-xl text-foreground md:text-2xl">
+    <dl class="flex max-w-4xl flex-col gap-6 text-xl text-foreground md:text-2xl">
       {
         groups.map((group) => (
           <div>
-            <dt class="inline text-muted-foreground">{group.label}:&nbsp;</dt>
+            <dt class="inline text-muted-foreground small-caps">{group.label}:&nbsp;</dt>
             <dd class="inline">{group.items.join(", ")}</dd>
           </div>
         ))
