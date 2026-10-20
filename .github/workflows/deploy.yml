@@ -20,36 +20,32 @@ jobs:
       group: ${{ github.workflow }}-${{ github.ref }}
 
     steps:
-      - &checkout
-        name: Checkout branch
+      - name: Checkout branch
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
-      - &setup-bun
-        name: Setup Bun
+      - name: Setup Bun
         uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
 
-      - &cache-deps
-        name: Cache dependencies
+      - name: Cache dependencies
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ~/.bun/install/cache
           key: bun-${{ runner.os }}-${{ hashFiles('bun.lock') }}
           restore-keys: bun-${{ runner.os }}-
 
-      - &install-deps
-        name: Install dependencies
+      - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      - &build-project
-        name: Build project
+      - name: Build project
         run: bun run build
 
       - name: Upload to GitHub Pages
         if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
+          include-hidden-files: true
           path: dist
           retention-days: 1
 
@@ -90,11 +86,13 @@ jobs:
       group: ${{ github.workflow }}-${{ github.ref }}-publish
 
     steps:
-      - *checkout
-      - *setup-bun
-      - *cache-deps
-      - *install-deps
-      - *build-project
+      - name: Download from GitHub Pages
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: github-pages
+
+      - name: Extract artifact
+        run: mkdir dist && tar -xf artifact.tar -C dist
 
       - name: Upload to web server
         env:
