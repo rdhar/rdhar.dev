@@ -1,13 +1,13 @@
 ---
 title: "Enhance Terraform/Tofu PR automation with GitHub Action"
-description: "Use OP5dev/TF-via-PR to init, plan and apply Terraform or OpenTofu changes from pull requests with low-code GitHub Actions workflows."
+description: "Use noise-rest/TF-via-PR to init, plan and apply Terraform or OpenTofu changes from pull requests with low-code GitHub Actions workflows."
 pubDate: 2024-11-06
 image:
   url: "/src/images/blog/terraform-tofu-pr-automation/cover.webp"
   alt: "Pull request comment showing a Terraform plan with the Diff of changes section expanded"
 ---
 
-Provisioning infrastructure-as-code (IaC) in a GitOps framework can feel like walking a tightrope: balancing pipeline security while trying to communicate changes clearly. This post covers [OP5dev/TF-via-PR](https://github.com/OP5dev/TF-via-PR), which addresses common pitfalls when planning and applying IaC:
+Provisioning infrastructure-as-code (IaC) in a GitOps framework can feel like walking a tightrope: balancing pipeline security while trying to communicate changes clearly. This post covers [noise-rest/TF-via-PR](https://github.com/noise-rest/TF-via-PR), which addresses common pitfalls when planning and applying IaC:
 
 1. Summarize plan changes (with diff)
 2. Reuse plan file (with encryption)
@@ -37,7 +37,7 @@ jobs:
       - name: Setup TF
         uses: hashicorp/setup-terraform@v3
       - name: Provision TF
-        uses: op5dev/tf-via-pr@v12
+        uses: noise-rest/tf-via-pr@v12
         with:
           command: plan
           arg-lock: false
@@ -61,7 +61,7 @@ Uploading the plan file as-is risks exposing sensitive data. Instead, the file i
 
 ```yaml
 - name: Provision TF
-  uses: op5dev/tf-via-pr@v13
+  uses: noise-rest/tf-via-pr@v13
   with:
     command: plan
     arg-lock: ${{ github.event_name == 'push' }}
@@ -105,7 +105,7 @@ jobs:
         uses: hashicorp/setup-terraform@v3
       # Only plan by default, or apply with lock on merge.
       - name: Provision TF
-        uses: op5dev/tf-via-pr@v13
+        uses: noise-rest/tf-via-pr@v13
         with:
           command: ${{ github.event_name == 'push' && 'apply' || 'plan' }}
           arg-lock: ${{ github.event_name == 'push' }}
@@ -127,6 +127,6 @@ This post focused on planning and applying, but the action can also run `fmt` an
 
 For more complex workflows, `exitcode` and `identifier` outputs help with decision chains or integration with linting and security scans. The full list of parameters is in the [Readme](https://github.com/DevSecTop/TF-via-PR).
 
-Contributions are welcome. Feel free to open a discussion to share ideas, or star the [repository](https://github.com/OP5dev/TF-via-PR) if you find it useful.
+Contributions are welcome. Feel free to open a discussion to share ideas, or star the [repository](https://github.com/noise-rest/TF-via-PR) if you find it useful.
 
 Originally published on [Medium](https://medium.com/@rishavd/enhance-terraform-tofu-automation-with-github-action-1a775c8b6b61).

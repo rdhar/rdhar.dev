@@ -40,7 +40,7 @@ jobs:
 
 With authentication sorted and access to infrastructure secured, we turned to [Test Double](https://testdouble.com/insights/github-actions-terraform-automation) for inspiration on a "roll-your-own" deployment workflow.
 
-It links to [OP5dev/TF-via-PR](https://github.com/OP5dev/TF-via-PR): another open-source project that combines the outlined concepts into a reusable Action. For trunk-based Pull Request (PR) automation, this workflow:
+It links to [noise-rest/TF-via-PR](https://github.com/noise-rest/TF-via-PR): another open-source project that combines the outlined concepts into a reusable Action. For trunk-based Pull Request (PR) automation, this workflow:
 
 1. Runs _init > workspace > plan_ with optional arguments when a PR is opened, returns the plan output in a PR comment and stores the encrypted plan file as an artifact.
 2. Reruns _plan_ when the PR is updated with new commits, returning the latest output and replacing the old PR comment to reduce noise.
@@ -63,7 +63,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout
       - name: Provision infrastructure
-        uses: op5dev/tf-via-pr
+        uses: noise-rest/tf-via-pr
 ```
 
 ![Flow chart of the provisioning pipeline: Terraform plan on PR open, plan again on PR update, apply on PR merge.](../../images/blog/secure-cloud-provisioning-pipeline/pipeline-flow.webp)
@@ -118,7 +118,7 @@ jobs:
         with:
           terraform_version: "1.8.5"
       - name: Provision infrastructure
-        uses: op5dev/tf-via-pr@f455e10e6e83d28f53f505a2d8242433a17536f3 # v13.0.0
+        uses: noise-rest/tf-via-pr@f455e10e6e83d28f53f505a2d8242433a17536f3 # v13.0.0
         with:
           command: ${{ github.event_name == 'merge_group' && 'apply' || 'plan' }}
           arg-lock: ${{ github.event_name == 'merge_group' }}

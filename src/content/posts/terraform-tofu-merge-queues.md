@@ -66,11 +66,11 @@ We are not interested in batching or parallelization here. We want the queue's a
 - **Edge cases:** an `apply` failure can automatically trigger `apply -auto-approve` from the main branch, but a successful rollback isn't guaranteed. For example, when introducing a new provider.
 - **Workflow ownership:** you need bespoke workflow configuration to reuse plan output, configure recovery behaviour (if any), and communicate infrastructure changes clearly and securely.
 
-For a low-code starting point, see [Enhance Terraform/Tofu PR automation with GitHub Action](/blog/terraform-tofu-pr-automation/), which covers OP5dev/TF-via-PR.
+For a low-code starting point, see [Enhance Terraform/Tofu PR automation with GitHub Action](/blog/terraform-tofu-pr-automation/), which covers noise-rest/TF-via-PR.
 
 ### Verdict
 
-Automated, predictable and scalable. But we can't judge on your behalf; it's up to you to weigh the evidence and decide. Try our working [GitHub Action workflow](https://github.com/OP5dev/TF-via-PR/blob/main/.github/workflows/test_aws.yml) and see how it fits your development process. The example includes a matrix strategy, concurrency, rollback and notify-on-failure. To integrate with GitHub environments, use `gh-readonly-queue/main/pr-*` as the branch name pattern and adjust it to fit your use case.
+Automated, predictable and scalable. But we can't judge on your behalf; it's up to you to weigh the evidence and decide. Try our working [GitHub Action workflow](https://github.com/noise-rest/tf-via-pr/blob/main/.github/examples/pr_merge_matrix.yml) and see how it fits your development process. The example runs `plan` on pull requests and `apply` in the merge queue, across a matrix of deployments. To integrate with GitHub environments, use `gh-readonly-queue/main/pr-*` as the branch name pattern and adjust it to fit your use case.
 
 ![GitHub branch protection rule with Require merge queue enabled, squash and merge, build concurrency of 1, and a 90 minute status check timeout](../../images/blog/terraform-tofu-merge-queues/branch-protection.webp)
 
