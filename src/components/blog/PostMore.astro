@@ -24,8 +24,8 @@ const posts = (await getCollection("posts"))
     <Text tag="h2" variant="displayXL" class="font-display font-medium leading-none tracking-tight text-foreground">
       {title}
     </Text>
-    <ul class="grid grid-cols-1 gap-x-4 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-      {posts.map((post) => <BlogCard post={post} headingTag="h3" crop />)}
+    <ul class="grid grid-cols-1 gap-x-4 sm:grid-cols-2 lg:grid-cols-3">
+      {posts.map((post) => <BlogCard post={post} headingTag="h3" />)}
     </ul>
   </Wrapper>
 </section>
