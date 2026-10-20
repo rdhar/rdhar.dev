@@ -1,0 +1,74 @@
+---
+// Fundations
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
+const contact = [
+  { label: "hi@rdhar.dev", href: "mailto:hi@rdhar.dev" },
+  { label: "Book a call", href: "https://cal.com/rdhar/1-1" },
+  { label: "Bluesky", href: "https://bsky.app/profile/rdhar.dev" },
+  { label: "Medium", href: "https://medium.com/@rishavd" },
+];
+const resources = [
+  { label: "Work", href: "/work/" },
+  { label: "About", href: "/about/" },
+  { label: "Blog", href: "/blog/" },
+  { label: "RSS", href: "/rss.xml" },
+  { label: "Source", href: "https://github.com/rdhar/rdhar.dev" },
+];
+const time = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/London", hour: "2-digit", minute: "2-digit" }).format(new Date());
+const linkClass = "w-fit font-medium text-foreground transition-colors duration-300 hover:text-muted-foreground motion-reduce:transition-none";
+---
+
+<footer class="overflow-hidden">
+  <Wrapper variant="standard" class="flex flex-col gap-24 pt-24">
+    <div class="grid grid-cols-2 gap-x-4 gap-y-8 border-t border-muted pt-4 lg:grid-cols-4">
+      <Text tag="a" href="/" variant="textSM" class={linkClass}>Rishav Dhar</Text>
+      <ul>
+        {
+          contact.map((item) => (
+            <li>
+              <Text tag="a" href={item.href} variant="textSM" class={linkClass}>
+                {item.label}
+              </Text>
+            </li>
+          ))
+        }
+      </ul>
+      <ul>
+        {
+          resources.map((item) => (
+            <li>
+              <Text tag="a" href={item.href} variant="textSM" class={linkClass}>
+                {item.label}
+              </Text>
+            </li>
+          ))
+        }
+      </ul>
+      <div class="flex flex-col lg:items-end">
+        <Text tag="p" variant="textSM" class="font-medium text-foreground">Edinburgh</Text>
+        <Text tag="p" variant="textSM" class="font-medium text-muted-foreground">
+          <time data-clock>{time}</time>
+        </Text>
+      </div>
+    </div>
+    <p
+      class="font-display text-6xl font-medium leading-none tracking-tight text-foreground md:text-8xl"
+      aria-hidden="true"
+    >
+      Rishav Dhar
+    </p>
+  </Wrapper>
+</footer>
+
+<script>
+  const clock = document.querySelector<HTMLTimeElement>("[data-clock]");
+  const formatter = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/London", hour: "2-digit", minute: "2-digit" });
+  const tick = () => {
+    if (clock) clock.textContent = formatter.format(new Date());
+  };
+
+  tick();
+  setInterval(tick, 10000);
+</script>

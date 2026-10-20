@@ -1,0 +1,25 @@
+---
+// Fundations
+import Text from "@/components/fundations/elements/Text.astro";
+// Content
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  entry: CollectionEntry<"work">;
+}
+
+const { entry } = Astro.props;
+const { title, client, start, end } = entry.data;
+---
+
+<li>
+  <a href={`/work/${entry.id}/`} class="group grid grid-cols-1 gap-x-4 gap-y-1 border-t border-muted py-4 sm:grid-cols-2">
+    <Text tag="h3" variant="textSM" class="font-medium text-foreground transition-colors duration-300 group-hover:text-muted-foreground motion-reduce:transition-none">
+      {title}
+    </Text>
+    <div class="flex justify-between gap-4">
+      <Text tag="p" variant="textSM" class="text-muted-foreground">{client}</Text>
+      <Text tag="p" variant="textSM" class="text-muted-foreground">{start.getFullYear()}–{end ? end.getFullYear() : "now"}</Text>
+    </div>
+  </a>
+</li>

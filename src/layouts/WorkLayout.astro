@@ -1,0 +1,25 @@
+---
+// Fundations
+import BaseLayout from "@/layouts/BaseLayout.astro";
+// Components
+import WorkHero from "@/components/work/WorkHero.astro";
+import WorkOverview from "@/components/work/WorkOverview.astro";
+import WorkPagination from "@/components/work/WorkPagination.astro";
+
+const { id, frontmatter } = Astro.props;
+const title = `${frontmatter.title} at ${frontmatter.client}`;
+---
+
+<BaseLayout title={title} description={frontmatter.summary}>
+  <WorkHero title={frontmatter.title} summary={frontmatter.summary} />
+  <WorkOverview
+    client={frontmatter.client}
+    location={frontmatter.location}
+    start={frontmatter.start}
+    end={frontmatter.end}
+    skills={frontmatter.skills}
+  >
+    <slot />
+  </WorkOverview>
+  <WorkPagination currentId={id} />
+</BaseLayout>

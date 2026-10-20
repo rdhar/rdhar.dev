@@ -1,0 +1,39 @@
+---
+// Assets
+import { Image } from "astro:assets";
+// Fundations
+import Text from "@/components/fundations/elements/Text.astro";
+// Content
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  post: CollectionEntry<"posts">;
+  headingTag?: "h2" | "h3";
+  crop?: boolean;
+}
+
+const { post, headingTag = "h2", crop = false } = Astro.props;
+const date = post.data.pubDate.toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" });
+---
+
+<li>
+  <a href={`/blog/${post.id}/`} class="group flex flex-col gap-2">
+    <div class="overflow-hidden bg-muted">
+      <Image
+        src={post.data.image.url}
+        alt={post.data.image.alt}
+        widths={[600, 1000]}
+        sizes="(min-width: 640px) 50vw, 100vw"
+        class:list={[crop && "aspect-4/3 object-cover", "w-full transition-transform duration-700 ease-out group-hover:scale-105 motion-reduce:transition-none"]}
+      />
+    </div>
+    <div>
+      <Text tag={headingTag} variant="textSM" class="font-medium text-foreground">
+        {post.data.title}
+      </Text>
+      <Text tag="p" variant="textSM" class="text-muted-foreground">
+        <time datetime={post.data.pubDate.toISOString()}>{date}</time>
+      </Text>
+    </div>
+  </a>
+</li>
