@@ -6,6 +6,7 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   site: "https://www.rdhar.dev",
   trailingSlash: "always",
+  build: { inlineStylesheets: "always" },
   integrations: [sitemap()],
   markdown: { syntaxHighlight: false },
   vite: { plugins: [tailwindcss()] },
