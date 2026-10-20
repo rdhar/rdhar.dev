@@ -15,13 +15,13 @@ const date = post.data.pubDate.toLocaleDateString("en-GB", { year: "numeric", mo
 
 <li>
   <a href={`/blog/${post.id}/`} class="group flex h-full flex-col gap-2 border-t border-muted py-4">
-    <Text tag={headingTag} variant="textSM" class="text-foreground transition-colors duration-300 group-hover:text-muted-foreground motion-reduce:transition-none">
+    <Text tag={headingTag} variant="textBase" class="text-foreground transition-colors duration-300 group-hover:text-muted-foreground motion-reduce:transition-none">
       {post.data.title}
     </Text>
-    <Text tag="p" variant="textSM" class="max-w-md text-muted-foreground">
+    <Text tag="p" variant="textBase" class="max-w-md text-muted-foreground">
       {post.data.description}
     </Text>
-    <Text tag="p" variant="textSM" class="text-muted-foreground">
+    <Text tag="p" variant="textBase" class="text-muted-foreground">
       <time datetime={post.data.pubDate.toISOString()}>{date}</time>
     </Text>
   </a>

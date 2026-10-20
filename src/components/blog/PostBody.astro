@@ -21,13 +21,13 @@ const details = [
       {
         details.map((detail) => (
           <div>
-            <dt class="text-sm text-muted-foreground small-caps">{detail.label}</dt>
-            <dd class="text-sm text-foreground">{detail.value}</dd>
+            <dt class="text-base md:text-lg text-muted-foreground small-caps">{detail.label}</dt>
+            <dd class="text-base md:text-lg text-foreground">{detail.value}</dd>
           </div>
         ))
       }
     </dl>
-    <div class="prose max-w-lg text-muted-foreground prose-headings:font-normal prose-headings:tracking-tight prose-headings:text-foreground prose-p:text-muted-foreground">
+    <div class="prose max-w-xl md:prose-lg text-muted-foreground prose-headings:font-normal prose-headings:tracking-tight prose-headings:text-foreground prose-p:text-muted-foreground">
       <slot />
     </div>
   </Wrapper>
