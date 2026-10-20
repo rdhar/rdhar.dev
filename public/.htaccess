@@ -6,6 +6,9 @@
 
 ErrorDocument 404 /404.html
 
+# Retired theme demo pages
+RedirectMatch 410 ^/(projects/|blog/0[1-8]-)
+
 # Contact
 Redirect 301 /meet    https://cal.com/rdhar/1-1
 Redirect 301 /cal     https://cal.com/rdhar/1-1
