@@ -13,7 +13,7 @@ interface Props {
 const { client, location, start, end, skills } = Astro.props;
 const details = [
   { label: "Company", value: client },
-  { label: "Years", value: `${start.getFullYear()}–${end ? end.getFullYear() : "now"}` },
+  { label: "Years", value: `${start.getUTCFullYear()}–${end ? end.getUTCFullYear() : "now"}` },
   { label: "Location", value: location },
   { label: "Skills", value: skills },
 ];

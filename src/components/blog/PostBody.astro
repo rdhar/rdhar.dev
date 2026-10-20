@@ -8,7 +8,7 @@ interface Props {
 }
 
 const { pubDate, readingTime } = Astro.props;
-const date = pubDate.toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" });
+const date = pubDate.toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" });
 const details = [
   { label: "Published", value: date },
   { label: "Reading time", value: readingTime },

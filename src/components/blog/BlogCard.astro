@@ -10,7 +10,7 @@ interface Props {
 }
 
 const { post, headingTag = "h2" } = Astro.props;
-const date = post.data.pubDate.toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" });
+const date = post.data.pubDate.toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" });
 ---
 
 <li>
