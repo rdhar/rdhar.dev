@@ -23,12 +23,12 @@ const linkClass = "w-fit text-foreground transition-colors duration-300 hover:te
 <footer class="overflow-hidden">
   <Wrapper variant="standard" class="flex flex-col gap-24 pt-24">
     <div class="grid grid-cols-2 gap-x-4 gap-y-8 border-t border-muted pt-4 lg:grid-cols-4">
-      <Text tag="a" href="/" variant="textSM" class={linkClass}>Rishav Dhar</Text>
+      <Text tag="a" href="/" variant="textBase" class={linkClass}>Rishav Dhar</Text>
       <ul>
         {
           contact.map((item) => (
             <li>
-              <Text tag="a" href={item.href} variant="textSM" class={linkClass}>
+              <Text tag="a" href={item.href} variant="textBase" class={linkClass}>
                 {item.label}
               </Text>
             </li>
@@ -39,7 +39,7 @@ const linkClass = "w-fit text-foreground transition-colors duration-300 hover:te
         {
           resources.map((item) => (
             <li>
-              <Text tag="a" href={item.href} variant="textSM" class={linkClass}>
+              <Text tag="a" href={item.href} variant="textBase" class={linkClass}>
                 {item.label}
               </Text>
             </li>
@@ -47,8 +47,8 @@ const linkClass = "w-fit text-foreground transition-colors duration-300 hover:te
         }
       </ul>
       <div class="flex flex-col lg:items-end">
-        <Text tag="p" variant="textSM" class="text-foreground">Edinburgh</Text>
-        <Text tag="p" variant="textSM" class="text-muted-foreground">
+        <Text tag="p" variant="textBase" class="text-foreground">Edinburgh</Text>
+        <Text tag="p" variant="textBase" class="text-muted-foreground">
           <time data-clock>{time}</time>
         </Text>
       </div>
