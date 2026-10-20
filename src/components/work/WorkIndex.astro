@@ -1,0 +1,19 @@
+---
+// Fundations
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Components
+import WorkCard from "@/components/work/WorkCard.astro";
+// Content
+import { getCollection } from "astro:content";
+
+const works = (await getCollection("work")).sort((a, b) => b.data.start.getTime() - a.data.start.getTime());
+---
+
+<section>
+  <Wrapper variant="standard" class="pb-24">
+    <h2 class="sr-only">Work</h2>
+    <ul class="border-b border-muted">
+      {works.map((entry) => <WorkCard entry={entry} />)}
+    </ul>
+  </Wrapper>
+</section>

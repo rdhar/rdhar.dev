@@ -1,0 +1,51 @@
+---
+// Fundations
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
+const links = [
+  { label: "Work", href: "/work/" },
+  { label: "About", href: "/about/" },
+  { label: "Blog", href: "/blog/" },
+];
+const actions = [
+  { label: "GitHub", href: "https://github.com/rdhar" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/rishavdhar" },
+];
+---
+
+<header>
+  <Wrapper variant="standard">
+    <nav class="grid grid-cols-2 gap-4 py-4">
+      <Text tag="a" href="/" variant="textSM" class="w-fit font-medium text-foreground">
+        Rishav Dhar
+      </Text>
+      <div class="flex flex-col justify-between gap-1 sm:flex-row">
+        <ul class="flex flex-wrap">
+          {
+            links.map((link, index) => (
+              <li>
+                <Text tag="a" href={link.href} variant="textSM" class="font-medium text-foreground hover:text-muted-foreground">
+                  {link.label}
+                </Text>
+                {index < links.length - 1 && <span class="text-sm font-medium text-foreground">,&nbsp;</span>}
+              </li>
+            ))
+          }
+        </ul>
+        <ul class="flex flex-wrap">
+          {
+            actions.map((action, index) => (
+              <li>
+                <Text tag="a" href={action.href} variant="textSM" class="font-medium text-foreground hover:text-muted-foreground">
+                  {action.label}
+                </Text>
+                {index < actions.length - 1 && <span class="text-sm font-medium text-foreground">,&nbsp;</span>}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </nav>
+  </Wrapper>
+</header>

@@ -1,23 +1,31 @@
-import { defineConfig } from "astro/config";
-import mdx from "@astrojs/mdx";
+import { defineConfig, fontProviders } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://www.rdhar.dev",
-  integrations: [mdx(), sitemap()],
-  markdown: { syntaxHighlight: "prism" },
+  trailingSlash: "always",
+  integrations: [sitemap()],
+  markdown: { syntaxHighlight: false },
   vite: { plugins: [tailwindcss()] },
+  fonts: [
+    {
+      provider: fontProviders.google(),
+      name: "Inter",
+      cssVariable: "--font-inter",
+      weights: [400, 500],
+      subsets: ["latin"],
+    },
+  ],
   security: {
     csp: {
       directives: [
         "default-src 'none'",
         "base-uri 'self'",
         "form-action 'self'",
-        "frame-ancestors 'none'",
         "connect-src 'self' https://rdhar.goatcounter.com/count",
-        "img-src 'self' https://github.com https://private-user-images.githubusercontent.com https://upload.wikimedia.org",
+        "img-src 'self'",
         "font-src 'self'",
       ],
       scriptDirective: {
@@ -32,6 +40,7 @@ export default defineConfig({
     headers: {
       "X-Content-Type-Options": "nosniff",
       "Referrer-Policy": "strict-origin-when-cross-origin",
+      "X-Frame-Options": "DENY",
     },
   },
 });

@@ -1,0 +1,6 @@
+@theme {
+  --color-background: oklch(1 0 0);
+  --color-foreground: oklch(0.145 0 0);
+  --color-muted: oklch(0.93 0 0);
+  --color-muted-foreground: oklch(0.556 0 0);
+}

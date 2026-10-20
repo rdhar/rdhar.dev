@@ -1,6 +1,6 @@
 # [rdhar.dev](https://www.rdhar.dev/)
 
-> Personal blog and portfolio of Rishav Dhar, Principal Engineer of Platform DevOps @Tucows.
+> Personal site and blog of Rishav Dhar, Principal Engineer of Platform DevOps at Wavelo. Built with [Astro](https://astro.build) on the [Simplexity](https://lexingtonthemes.com/templates/simplexity) theme.
 
 ## Usage
 
@@ -10,9 +10,8 @@
 | `bun run dev`       | Starts local dev server at `localhost:4321`.  |
 | `bun run build`     | Build your production site to `./dist/`.      |
 | `bun run preview`   | Preview your build locally, before deploying. |
-| `bun run astro ...` | Run Astro CLI commands, like `astro check`    |
-| `bun run lint`      | Run ESLint.                                   |
-| `bun run lint:fix`  | Auto-fix ESLint issues.                       |
+
+Posts live in `src/content/posts/` and roles in `src/content/work/`, both as Markdown.
 
 </br>
 

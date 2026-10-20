@@ -1,0 +1,27 @@
+---
+// Fundations
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Components
+import BlogCard from "@/components/blog/BlogCard.astro";
+// Content
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("posts")).sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+---
+
+<section>
+  <Wrapper variant="standard" class="flex flex-col gap-24 pt-28 pb-24">
+    <div class="flex flex-col gap-32">
+      <Text tag="h1" variant="displayXL" class="font-display font-medium leading-none tracking-tight text-pretty text-foreground lg:text-balance">
+        Writing
+      </Text>
+      <Text tag="p" variant="textSM" class="max-w-xs text-muted-foreground">
+        Notes on infrastructure as code, CI/CD and platform engineering.
+      </Text>
+    </div>
+    <ul class="grid grid-cols-1 gap-x-4 sm:grid-cols-2">
+      {posts.map((post) => <BlogCard post={post} />)}
+    </ul>
+  </Wrapper>
+</section>

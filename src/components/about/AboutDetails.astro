@@ -1,0 +1,57 @@
+---
+// Fundations
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
+const groups = [
+  {
+    label: "Capabilities",
+    items: [
+      "Platform engineering",
+      "CI/CD with GitHub Actions",
+      "Infrastructure as code",
+      "Policy as code",
+      "Observability",
+      "Site reliability",
+      "FinOps",
+    ],
+  },
+  {
+    label: "Tools",
+    items: ["Terraform", "OpenTofu", "AWS", "Kubernetes", "Helm", "OpenBao", "OpenTelemetry", "Grafana", "Prometheus"],
+  },
+  {
+    label: "Speaking",
+    items: ["IaCConf Spotlight on security and governance", "FutureStack 2021"],
+  },
+  {
+    label: "Open source",
+    items: ["TF-via-PR, a GitHub Action to plan and apply Terraform and OpenTofu from pull requests"],
+  },
+  {
+    label: "Education",
+    items: [
+      "BEng (Hons) Electronic and Software Engineering, first class, University of Glasgow",
+      "IET Diploma for IT and Telecoms Professionals",
+    ],
+  },
+  {
+    label: "Languages",
+    items: ["English", "Hindi"],
+  },
+];
+---
+
+<section>
+  <Wrapper variant="standard" class="pb-24">
+    <dl class="flex max-w-4xl flex-col gap-6 font-display text-xl text-foreground md:text-2xl">
+      {
+        groups.map((group) => (
+          <div>
+            <dt class="inline text-muted-foreground">{group.label}:&nbsp;</dt>
+            <dd class="inline">{group.items.join(", ")}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </Wrapper>
+</section>

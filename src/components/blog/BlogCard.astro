@@ -1,0 +1,28 @@
+---
+// Fundations
+import Text from "@/components/fundations/elements/Text.astro";
+// Content
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  post: CollectionEntry<"posts">;
+  headingTag?: "h2" | "h3";
+}
+
+const { post, headingTag = "h2" } = Astro.props;
+const date = post.data.pubDate.toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" });
+---
+
+<li>
+  <a href={`/blog/${post.id}/`} class="group flex h-full flex-col gap-2 border-t border-muted py-4">
+    <Text tag={headingTag} variant="textSM" class="font-medium text-foreground transition-colors duration-300 group-hover:text-muted-foreground motion-reduce:transition-none">
+      {post.data.title}
+    </Text>
+    <Text tag="p" variant="textSM" class="max-w-md text-muted-foreground">
+      {post.data.description}
+    </Text>
+    <Text tag="p" variant="textSM" class="text-muted-foreground">
+      <time datetime={post.data.pubDate.toISOString()}>{date}</time>
+    </Text>
+  </a>
+</li>

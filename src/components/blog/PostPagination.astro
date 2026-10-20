@@ -1,0 +1,21 @@
+---
+// Components
+import Pagination from "@/components/global/Pagination.astro";
+// Content
+import { getCollection } from "astro:content";
+
+interface Props {
+  currentId: string;
+}
+
+const { currentId } = Astro.props;
+const posts = (await getCollection("posts")).sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+const index = posts.findIndex((post) => post.id === currentId);
+const previous = posts[(index - 1 + posts.length) % posts.length];
+const next = posts[(index + 1) % posts.length];
+---
+
+<Pagination
+  previous={{ title: previous.data.title, href: `/blog/${previous.id}/` }}
+  next={{ title: next.data.title, href: `/blog/${next.id}/` }}
+/>
