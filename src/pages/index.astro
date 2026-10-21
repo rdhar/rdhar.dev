@@ -1,13 +1,18 @@
 ---
-// Fundations
+// Foundations
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Hero from "@/components/landing/Hero.astro";
+import PageHero from "@/components/global/PageHero.astro";
 import Details from "@/components/landing/Details.astro";
 import WorkIndex from "@/components/work/WorkIndex.astro";
 import PostMore from "@/components/blog/PostMore.astro";
 ---
 <BaseLayout description="Rishav Dhar, Principal Engineer of Platform DevOps at Wavelo. Secure, self-service infrastructure and CI/CD from code to cloud to customer.">
-  <Hero />
+  <PageHero
+    class="lg:w-1/2"
+    summary="Principal Engineer of Platform DevOps at Wavelo, based in Edinburgh. I build secure, self-service infrastructure and CI/CD that shorten the loop from code to cloud to customer. Away from work, I hike the Scottish crags in search of rare sunshine."
+  >
+    <Fragment slot="title">Rishav Dhar<br />Platform engineer</Fragment>
+  </PageHero>
   <Details />
   <WorkIndex />
   <PostMore title="Writing" />

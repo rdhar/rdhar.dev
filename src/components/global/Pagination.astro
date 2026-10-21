@@ -1,22 +1,21 @@
 ---
-// Fundations
-import Text from "@/components/fundations/elements/Text.astro";
-import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-
-interface Link {
-  title: string;
-  href: string;
-}
+// Foundations
+import Text from "@/components/foundations/elements/Text.astro";
+import Wrapper from "@/components/foundations/containers/Wrapper.astro";
+// Content
+import { getPosts, getWorks } from "@/content";
 
 interface Props {
-  previous: Link;
-  next: Link;
+  collection: "posts" | "work";
+  currentId: string;
 }
 
-const { previous, next } = Astro.props;
+const { collection, currentId } = Astro.props;
+const [entries, base] = collection === "posts" ? [await getPosts(), "/blog/"] : [await getWorks(), "/work/"];
+const index = entries.findIndex((entry) => entry.id === currentId);
 const links = [
-  { label: "Previous", ...previous },
-  { label: "Next", ...next },
+  { label: "Previous", entry: entries[(index - 1 + entries.length) % entries.length] },
+  { label: "Next", entry: entries[(index + 1) % entries.length] },
 ];
 ---
 
@@ -25,7 +24,7 @@ const links = [
     <nav class="grid grid-cols-2 gap-4 border-t border-muted pt-6" aria-label="Pagination">
       {
         links.map((link) => (
-          <a href={link.href} class="group flex flex-col gap-2">
+          <a href={`${base}${link.entry.id}/`} class="group flex flex-col gap-2">
             <Text tag="span" variant="textBase" class="text-muted-foreground small-caps">
               {link.label}
             </Text>
@@ -34,7 +33,7 @@ const links = [
               variant="displayMD"
               class="leading-none tracking-tight text-foreground transition-colors duration-300 group-hover:text-muted-foreground motion-reduce:transition-none"
             >
-              {link.title}
+              {link.entry.data.title}
             </Text>
           </a>
         ))
