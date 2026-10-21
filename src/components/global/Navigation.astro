@@ -24,7 +24,7 @@ const actions = [
           {
             links.map((link, index) => (
               <li>
-                <Text tag="a" href={link.href} variant="textBase" class="text-foreground hover:text-muted-foreground">
+                <Text tag="a" href={link.href} aria-current={Astro.url.pathname === link.href ? "page" : undefined} variant="textBase" class="text-foreground hover:text-muted-foreground">
                   {link.label}
                 </Text>
                 {index < links.length - 1 && <span class="text-base md:text-lg text-foreground">,&nbsp;</span>}
