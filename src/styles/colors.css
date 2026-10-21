@@ -17,3 +17,21 @@
     --color-muted-foreground: oklch(0.708 0 0);
   }
 }
+
+/* Typography plugin colours follow the tokens in both schemes. */
+.prose {
+  --tw-prose-body: var(--color-muted-foreground);
+  --tw-prose-headings: var(--color-foreground);
+  --tw-prose-lead: var(--color-muted-foreground);
+  --tw-prose-links: var(--color-foreground);
+  --tw-prose-bold: var(--color-foreground);
+  --tw-prose-counters: var(--color-muted-foreground);
+  --tw-prose-bullets: var(--color-muted-foreground);
+  --tw-prose-hr: var(--color-muted);
+  --tw-prose-quotes: var(--color-muted-foreground);
+  --tw-prose-quote-borders: var(--color-muted);
+  --tw-prose-captions: var(--color-muted-foreground);
+  --tw-prose-code: var(--color-foreground);
+  --tw-prose-th-borders: var(--color-muted);
+  --tw-prose-td-borders: var(--color-muted);
+}
