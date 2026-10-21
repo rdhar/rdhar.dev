@@ -5,7 +5,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import PostHeader from "@/components/blog/PostHeader.astro";
 import PostBody from "@/components/blog/PostBody.astro";
 import PostMore from "@/components/blog/PostMore.astro";
-import PostPagination from "@/components/blog/PostPagination.astro";
+import Pagination from "@/components/global/Pagination.astro";
 
 const { id, frontmatter, readingTime } = Astro.props;
 ---
@@ -15,6 +15,6 @@ const { id, frontmatter, readingTime } = Astro.props;
   <PostBody pubDate={frontmatter.pubDate} readingTime={readingTime}>
     <slot />
   </PostBody>
-  <PostPagination currentId={id} />
+  <Pagination collection="posts" currentId={id} />
   <PostMore currentId={id} />
 </BaseLayout>
