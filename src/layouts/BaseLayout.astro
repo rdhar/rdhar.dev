@@ -14,8 +14,9 @@ const { title, description, image, pubDate, noindex } = Astro.props;
     <BaseHead title={title} description={description} image={image} pubDate={pubDate} noindex={noindex} />
   </head>
   <body class="flex flex-col bg-background min-h-svh">
+    <a href="#content" class="sr-only text-base md:text-lg focus:not-sr-only focus:absolute focus:px-2 focus:py-1 focus:top-4 focus:left-4 focus:z-10 focus:bg-background focus:text-foreground">Skip to content</a>
     <Navigation />
-    <main class="grow"><slot /></main>
+    <main id="content" tabindex="-1" class="grow"><slot /></main>
     <Footer />
   </body>
 </html>
