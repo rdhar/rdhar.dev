@@ -14,7 +14,7 @@ const { title, summary, class: className = "" } = Astro.props;
 
 <section>
   <Wrapper variant="standard" class="pt-28 pb-14">
-    <div class={`flex flex-col gap-32 ${className}`.trim()}>
+    <div class={`flex flex-col gap-12 ${className}`.trim()}>
       <Text tag="h1" variant="displayXL" class="leading-none tracking-tight text-pretty text-foreground lg:text-balance">
         <slot name="title">{title}</slot>
       </Text>
