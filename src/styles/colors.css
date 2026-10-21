@@ -4,3 +4,16 @@
   --color-muted: oklch(0.93 0 0);
   --color-muted-foreground: oklch(0.556 0 0);
 }
+
+:root {
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: oklch(0.145 0 0);
+    --color-foreground: oklch(0.985 0 0);
+    --color-muted: oklch(0.269 0 0);
+    --color-muted-foreground: oklch(0.708 0 0);
+  }
+}
