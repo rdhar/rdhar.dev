@@ -2,7 +2,7 @@
 // Fundations
 import BaseLayout from "@/layouts/BaseLayout.astro";
 // Components
-import WorkHero from "@/components/work/WorkHero.astro";
+import PageHero from "@/components/global/PageHero.astro";
 import WorkOverview from "@/components/work/WorkOverview.astro";
 import Pagination from "@/components/global/Pagination.astro";
 
@@ -11,7 +11,7 @@ const title = `${frontmatter.title} at ${frontmatter.client}`;
 ---
 
 <BaseLayout title={title} description={frontmatter.summary}>
-  <WorkHero title={frontmatter.title} summary={frontmatter.summary} />
+  <PageHero title={frontmatter.title} summary={frontmatter.summary} />
   <WorkOverview
     client={frontmatter.client}
     location={frontmatter.location}

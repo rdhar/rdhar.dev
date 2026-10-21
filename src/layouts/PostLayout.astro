@@ -2,7 +2,7 @@
 // Fundations
 import BaseLayout from "@/layouts/BaseLayout.astro";
 // Components
-import PostHeader from "@/components/blog/PostHeader.astro";
+import PageHero from "@/components/global/PageHero.astro";
 import PostBody from "@/components/blog/PostBody.astro";
 import PostMore from "@/components/blog/PostMore.astro";
 import Pagination from "@/components/global/Pagination.astro";
@@ -11,7 +11,7 @@ const { id, frontmatter, readingTime } = Astro.props;
 ---
 
 <BaseLayout title={frontmatter.title} description={frontmatter.description} image={frontmatter.image.url} pubDate={frontmatter.pubDate}>
-  <PostHeader title={frontmatter.title} description={frontmatter.description} />
+  <PageHero class="max-w-3xl" title={frontmatter.title} summary={frontmatter.description} />
   <PostBody pubDate={frontmatter.pubDate} readingTime={readingTime}>
     <slot />
   </PostBody>

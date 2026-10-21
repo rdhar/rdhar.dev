@@ -1,25 +1,18 @@
 ---
 // Fundations
-import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 // Components
 import BlogCard from "@/components/blog/BlogCard.astro";
+import PageHero from "@/components/global/PageHero.astro";
 // Content
-import { getCollection } from "astro:content";
+import { getPosts } from "@/content";
 
-const posts = (await getCollection("posts")).sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+const posts = await getPosts();
 ---
 
+<PageHero title="Writing" summary="Notes on infrastructure as code, CI/CD and platform engineering." />
 <section>
-  <Wrapper variant="standard" class="flex flex-col gap-24 pt-28 pb-24">
-    <div class="flex flex-col gap-32">
-      <Text tag="h1" variant="displayXL" class="leading-none tracking-tight text-pretty text-foreground lg:text-balance">
-        Writing
-      </Text>
-      <Text tag="p" variant="textBase" class="max-w-md text-muted-foreground">
-        Notes on infrastructure as code, CI/CD and platform engineering.
-      </Text>
-    </div>
+  <Wrapper variant="standard" class="pb-24">
     <ul class="grid grid-cols-1 gap-x-4 sm:grid-cols-2">
       {posts.map((post) => <BlogCard post={post} />)}
     </ul>
