@@ -37,7 +37,7 @@ export default defineConfig({
         "font-src 'self'",
       ],
       scriptDirective: {
-        resources: ["'self'"],
+        resources: ["'self'", "'inline-speculation-rules'"],
       },
       styleDirective: {
         resources: ["'self'"],

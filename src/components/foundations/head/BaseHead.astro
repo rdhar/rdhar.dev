@@ -9,3 +9,10 @@ import Favicons from "@/components/foundations/head/Favicons.astro";
 <Seo {...Astro.props} />
 <Fonts />
 <Favicons />
+<script
+  is:inline
+  type="speculationrules"
+  set:html={JSON.stringify({
+    prerender: [{ where: { and: [{ href_matches: "/*" }, { not: { href_matches: "/rss.xml" } }] }, eagerness: "moderate" }],
+  })}
+/>
