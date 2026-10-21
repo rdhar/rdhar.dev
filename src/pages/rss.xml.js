@@ -1,8 +1,8 @@
 import rss from "@astrojs/rss";
-import { getCollection } from "astro:content";
+import { getPosts } from "@/content";
 
 export async function GET(context) {
-  const posts = (await getCollection("posts")).sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+  const posts = await getPosts();
   return rss({
     title: "Rishav Dhar",
     description: "Notes on infrastructure as code, CI/CD and platform engineering.",

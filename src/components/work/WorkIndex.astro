@@ -4,9 +4,9 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 // Components
 import WorkCard from "@/components/work/WorkCard.astro";
 // Content
-import { getCollection } from "astro:content";
+import { getWorks } from "@/content";
 
-const works = (await getCollection("work")).sort((a, b) => b.data.start.getTime() - a.data.start.getTime());
+const works = await getWorks();
 ---
 
 <section>
