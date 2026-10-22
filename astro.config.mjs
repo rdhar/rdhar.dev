@@ -46,12 +46,12 @@ export default defineConfig({
   },
   server: {
     headers: {
+      "Content-Security-Policy": "base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'",
+      "X-Frame-Options": "DENY",
       "X-Content-Type-Options": "nosniff",
       "Referrer-Policy": "strict-origin-when-cross-origin",
-      "X-Frame-Options": "DENY",
       "Permissions-Policy": "camera=(), geolocation=(), microphone=()",
       "Cross-Origin-Opener-Policy": "same-origin",
-      "Content-Security-Policy": "base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'",
     },
   },
 });
