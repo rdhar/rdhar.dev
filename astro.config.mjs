@@ -51,6 +51,7 @@ export default defineConfig({
       "X-Frame-Options": "DENY",
       "Permissions-Policy": "camera=(), geolocation=(), microphone=()",
       "Cross-Origin-Opener-Policy": "same-origin",
+      "Content-Security-Policy": "base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'",
     },
   },
 });
