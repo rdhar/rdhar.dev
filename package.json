@@ -20,6 +20,7 @@
     "node": ">=22.22.0"
   },
   "scripts": {
+    "check": "bunx --bun astro sync && bun check && bun fmt --check",
     "build": "bunx --bun astro build",
     "dev": "bunx --bun astro dev",
     "preview": "bunx --bun astro preview"
