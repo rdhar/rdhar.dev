@@ -1,0 +1,5 @@
+[install]
+# No dependency needs a lifecycle script; skip them all.
+ignoreScripts = true
+# Only install versions published at least 3 days ago.
+minimumReleaseAge = 259200
