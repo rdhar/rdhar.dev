@@ -4,12 +4,13 @@
 
 ## Usage
 
-| Command             | Action                                        |
-| ------------------- | --------------------------------------------- |
-| `bun install`       | Installs dependencies.                        |
-| `bun run dev`       | Starts local dev server at `localhost:4321`.  |
-| `bun run build`     | Build your production site to `./dist/`.      |
-| `bun run preview`   | Preview your build locally, before deploying. |
+| Command           | Action                                        |
+| ----------------- | --------------------------------------------- |
+| `bun install`     | Installs dependencies.                        |
+| `bun run dev`     | Starts local dev server at `localhost:4321`.  |
+| `bun run check`   | Type-checks and checks formatting.            |
+| `bun run build`   | Build your production site to `./dist/`.      |
+| `bun run preview` | Preview your build locally, before deploying. |
 
 Posts live in `src/content/posts/` and roles in `src/content/work/`, both as Markdown.
 
