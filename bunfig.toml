@@ -3,3 +3,6 @@
 ignoreScripts = true
 # Only install versions published at least 3 days ago.
 minimumReleaseAge = 259200
+
+[fmt]
+printWidth = 120
