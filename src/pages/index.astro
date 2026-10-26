@@ -7,13 +7,16 @@ import WorkIndex from "@/components/work/WorkIndex.astro";
 import PostMore from "@/components/blog/PostMore.astro";
 ---
 <BaseLayout description="Rishav Dhar, Principal Engineer of Platform DevOps at Wavelo. Secure, self-service infrastructure and CI/CD from code to cloud to customer.">
-  <PageHero
-    class="lg:w-1/2"
-    summary="Principal Engineer of Platform DevOps at Wavelo, based in Edinburgh. I build secure, self-service infrastructure and CI/CD that shorten the loop from code to cloud to customer. Away from work, I hike the Scottish crags in search of rare sunshine."
-  >
-    <Fragment slot="title">Rishav Dhar<br />Platform engineer</Fragment>
-  </PageHero>
-  <Details />
+  <div class="mx-auto grid max-w-400 lg:grid-cols-2">
+    <PageHero
+      summary="Principal Engineer of Platform DevOps at Wavelo, based in Edinburgh. I build secure, self-service infrastructure and CI/CD that shorten the loop from code to cloud to customer. Away from work, I hike the Scottish crags in search of rare sunshine."
+    >
+      <Fragment slot="title">Rishav Dhar<br />Platform engineer</Fragment>
+    </PageHero>
+    <div class="lg:pt-28">
+      <Details />
+    </div>
+  </div>
   <WorkIndex />
   <PostMore title="Writing" />
 </BaseLayout>
