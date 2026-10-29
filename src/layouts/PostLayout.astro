@@ -7,12 +7,12 @@ import PostBody from "@/components/blog/PostBody.astro";
 import PostMore from "@/components/blog/PostMore.astro";
 import Pagination from "@/components/global/Pagination.astro";
 
-const { id, frontmatter, readingTime } = Astro.props;
+const { id, frontmatter, readingTime, headings } = Astro.props;
 ---
 
 <BaseLayout title={frontmatter.title} description={frontmatter.description} image={frontmatter.image.url} pubDate={frontmatter.pubDate}>
   <PageHero class="max-w-3xl" title={frontmatter.title} summary={frontmatter.description} />
-  <PostBody pubDate={frontmatter.pubDate} readingTime={readingTime}>
+  <PostBody id={id} title={frontmatter.title} pubDate={frontmatter.pubDate} readingTime={readingTime} headings={headings}>
     <slot />
   </PostBody>
   <Pagination collection="posts" currentId={id} />

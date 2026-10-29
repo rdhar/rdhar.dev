@@ -3,32 +3,103 @@
 import Wrapper from "@/components/foundations/containers/Wrapper.astro";
 
 interface Props {
+  id: string;
+  title: string;
   pubDate: Date;
   readingTime: string;
+  headings: { depth: number; slug: string; text: string }[];
 }
 
-const { pubDate, readingTime } = Astro.props;
+const { id, title, pubDate, readingTime, headings } = Astro.props;
 const date = pubDate.toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" });
 const details = [
   { label: "Published", value: date },
   { label: "Reading time", value: readingTime },
 ];
+const toc = headings.filter((heading) => heading.depth === 2 || heading.depth === 3);
+const url = new URL(`/blog/${id}/`, Astro.site).href;
+const share = [
+  { label: "Email", href: `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(url)}` },
+  { label: "Suggest edit", href: `https://github.com/rdhar/rdhar.dev/blob/main/src/content/posts/${id}.md`, external: true },
+];
 ---
 
+<div class="read-progress fixed inset-x-0 top-0 z-50 h-1 bg-foreground" aria-hidden="true"></div>
 <section>
   <Wrapper variant="standard" class="grid grid-cols-1 gap-12 py-24 lg:grid-cols-2">
-    <dl class="flex gap-12 self-start lg:sticky lg:top-6">
+    <div class="flex flex-col gap-12 self-start lg:sticky lg:top-6 lg:max-h-[calc(100dvh-3rem)] lg:overflow-y-auto">
+      <dl class="flex gap-12">
+        {
+          details.map((detail) => (
+            <div>
+              <dt class="text-base md:text-lg text-muted-foreground small-caps">{detail.label}</dt>
+              <dd class="text-base md:text-lg text-foreground">{detail.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
       {
-        details.map((detail) => (
-          <div>
-            <dt class="text-base md:text-lg text-muted-foreground small-caps">{detail.label}</dt>
-            <dd class="text-base md:text-lg text-foreground">{detail.value}</dd>
-          </div>
-        ))
+        toc.length > 0 && (
+          <nav aria-labelledby="toc-label" data-toc>
+            <h2 id="toc-label" class="text-base md:text-lg text-muted-foreground small-caps">
+              Contents
+            </h2>
+            <ol class="text-base md:text-lg">
+              {toc.map((heading) => (
+                <li class={heading.depth === 3 ? "pl-4" : ""}>
+                  <a
+                    href={`#${heading.slug}`}
+                    class="text-muted-foreground hover:text-foreground aria-[current=true]:text-foreground aria-[current=true]:underline"
+                  >
+                    {heading.text}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        )
       }
-    </dl>
+      <div>
+        <h2 class="text-base md:text-lg text-muted-foreground small-caps">Share</h2>
+        <ul class="text-base md:text-lg">
+          {
+            share.map((link) => (
+              <li>
+                <a href={link.href} class="text-foreground hover:underline" {...(link.external && { target: "_blank", rel: "noopener" })}>
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+          <li>
+            <button type="button" class="cursor-pointer text-foreground hover:underline" data-copy-url={url}>Copy URL</button>
+          </li>
+        </ul>
+      </div>
+    </div>
     <div class="prose max-w-xl md:prose-lg prose-headings:font-normal prose-headings:tracking-tight">
       <slot />
     </div>
   </Wrapper>
 </section>
+
+<script>
+  // Highlight the table-of-contents entry for the heading currently being read.
+  const links = [...document.querySelectorAll<HTMLAnchorElement>("[data-toc] a")];
+  const targets = links.map((link) => document.getElementById(link.hash.slice(1))).filter((el) => el !== null);
+  const update = () => {
+    const current = targets.findLast((el) => el.getBoundingClientRect().top <= window.innerHeight * 0.3);
+    for (const link of links) link.setAttribute("aria-current", String(link.hash === `#${current?.id}`));
+  };
+  if (targets.length > 0) {
+    addEventListener("scroll", update, { passive: true });
+    update();
+  }
+
+  const copy = document.querySelector<HTMLButtonElement>("[data-copy-url]");
+  copy?.addEventListener("click", async () => {
+    await navigator.clipboard.writeText(copy.dataset.copyUrl ?? location.href);
+    copy.textContent = "Copied";
+    setTimeout(() => (copy.textContent = "Copy URL"), 2000);
+  });
+</script>

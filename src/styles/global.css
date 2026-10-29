@@ -56,3 +56,32 @@ footer {
 main:focus {
   outline: none;
 }
+
+/* Reading progress bar driven by page scroll; hidden where unsupported. */
+@keyframes read-progress {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.read-progress {
+  display: none;
+}
+
+@supports (animation-timeline: scroll()) {
+  .read-progress {
+    display: block;
+    transform: scaleX(0);
+    transform-origin: left;
+    animation-name: read-progress;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-timeline: scroll(root);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .read-progress {
+    display: none;
+  }
+}

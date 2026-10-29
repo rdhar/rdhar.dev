@@ -9,10 +9,10 @@ export async function getStaticPaths() {
   }));
 }
 const { entry } = Astro.props;
-const { Content } = await render(entry);
+const { Content, headings } = await render(entry);
 const minutes = Math.max(1, Math.round((entry.body ?? "").split(/\s+/).length / 200));
 ---
 
-<PostLayout id={entry.id} frontmatter={entry.data} readingTime={`${minutes} min read`}>
+<PostLayout id={entry.id} frontmatter={entry.data} readingTime={`${minutes} min read`} headings={headings}>
   <Content />
 </PostLayout>
