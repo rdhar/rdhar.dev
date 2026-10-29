@@ -18,13 +18,10 @@ const details = [
 ];
 const toc = headings.filter((heading) => heading.depth === 2 || heading.depth === 3);
 const url = new URL(`/blog/${id}/`, Astro.site).href;
-const share = [
-  { label: "Email", href: `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(url)}` },
-  { label: "Suggest edit", href: `https://github.com/rdhar/rdhar.dev/blob/main/src/content/posts/${id}.md`, external: true },
-];
+const email = `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(url)}`;
+const edit = `https://github.com/rdhar/rdhar.dev/blob/main/src/content/posts/${id}.md`;
 ---
 
-<div class="read-progress fixed inset-x-0 top-0 z-50 h-1 bg-foreground" aria-hidden="true"></div>
 <section>
   <Wrapper variant="standard" class="grid grid-cols-1 gap-12 py-24 lg:grid-cols-2">
     <div class="flex flex-col gap-12 self-start lg:sticky lg:top-6 lg:max-h-[calc(100dvh-3rem)] lg:overflow-y-auto">
@@ -44,12 +41,13 @@ const share = [
             <h2 id="toc-label" class="text-base md:text-lg text-muted-foreground small-caps">
               Contents
             </h2>
-            <ol class="text-base md:text-lg">
+            <div class="read-progress my-2 h-px origin-left bg-foreground" aria-hidden="true"></div>
+            <ol class="toc text-sm md:text-base">
               {toc.map((heading) => (
                 <li class={heading.depth === 3 ? "pl-4" : ""}>
                   <a
                     href={`#${heading.slug}`}
-                    class="text-muted-foreground hover:text-foreground aria-[current=true]:text-foreground aria-[current=true]:underline"
+                    class="text-muted-foreground hover:text-foreground"
                   >
                     {heading.text}
                   </a>
@@ -61,18 +59,15 @@ const share = [
       }
       <div>
         <h2 class="text-base md:text-lg text-muted-foreground small-caps">Share</h2>
-        <ul class="text-base md:text-lg">
-          {
-            share.map((link) => (
-              <li>
-                <a href={link.href} class="text-foreground hover:underline" {...(link.external && { target: "_blank", rel: "noopener" })}>
-                  {link.label}
-                </a>
-              </li>
-            ))
-          }
+        <ul class="text-sm md:text-base text-muted-foreground">
           <li>
-            <button type="button" class="cursor-pointer text-foreground hover:underline" data-copy-url={url}>Copy URL</button>
+            <a href={email} class="hover:text-foreground hover:underline">Email</a>
+          </li>
+          <li>
+            <button type="button" class="cursor-pointer hover:text-foreground hover:underline" data-copy-url={url}>Copy link</button>
+          </li>
+          <li>
+            <a href={edit} target="_blank" rel="noopener" class="hover:text-foreground hover:underline">Suggest edit</a>
           </li>
         </ul>
       </div>
@@ -84,22 +79,28 @@ const share = [
 </section>
 
 <script>
-  // Highlight the table-of-contents entry for the heading currently being read.
-  const links = [...document.querySelectorAll<HTMLAnchorElement>("[data-toc] a")];
+  // Native `:target-current` styles the active entry in Chromium; elsewhere mirror it with a class from scroll position.
+  const links = [...document.querySelectorAll<HTMLAnchorElement>(".toc a")];
   const targets = links.map((link) => document.getElementById(link.hash.slice(1))).filter((el) => el !== null);
+  const native = CSS.supports("scroll-target-group: auto");
   const update = () => {
-    const current = targets.findLast((el) => el.getBoundingClientRect().top <= window.innerHeight * 0.3);
-    for (const link of links) link.setAttribute("aria-current", String(link.hash === `#${current?.id}`));
+    const current = native
+      ? links.find((link) => link.matches(":target-current"))
+      : links.find((link) => link.hash === `#${targets.findLast((el) => el.getBoundingClientRect().top <= innerHeight * 0.3)?.id}`);
+    for (const link of links) {
+      link.setAttribute("aria-current", String(link === current));
+      if (!native) link.classList.toggle(":target-current", link === current);
+    }
   };
   if (targets.length > 0) {
-    addEventListener("scroll", update, { passive: true });
     update();
+    addEventListener(native ? "scrollend" : "scroll", update, { passive: true });
   }
 
   const copy = document.querySelector<HTMLButtonElement>("[data-copy-url]");
   copy?.addEventListener("click", async () => {
     await navigator.clipboard.writeText(copy.dataset.copyUrl ?? location.href);
     copy.textContent = "Copied";
-    setTimeout(() => (copy.textContent = "Copy URL"), 2000);
+    setTimeout(() => (copy.textContent = "Copy link"), 2000);
   });
 </script>
