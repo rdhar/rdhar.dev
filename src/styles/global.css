@@ -56,3 +56,16 @@ footer {
 main:focus {
   outline: none;
 }
+
+html {
+  scroll-padding-top: 2rem;
+}
+
+.toc {
+  scroll-target-group: auto;
+}
+
+.toc a:is(:target-current, .\:target-current) {
+  color: var(--color-foreground);
+  text-decoration: underline;
+}
