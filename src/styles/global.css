@@ -69,29 +69,3 @@ html {
   color: var(--color-foreground);
   text-decoration: underline;
 }
-
-/* Reading progress bar driven by page scroll; progressive enhancement only. */
-.read-progress {
-  display: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  @supports (animation-timeline: scroll()) {
-    @keyframes read-progress {
-      from {
-        transform: scaleX(0);
-      }
-      to {
-        transform: scaleX(1);
-      }
-    }
-
-    .read-progress {
-      display: block;
-      animation-name: read-progress;
-      animation-timing-function: linear;
-      animation-fill-mode: both;
-      animation-timeline: scroll(root);
-    }
-  }
-}
