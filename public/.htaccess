@@ -5,34 +5,27 @@
   Header always set X-Content-Type-Options "nosniff"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set Permissions-Policy "camera=(), geolocation=(), microphone=()"
-  Header always set Cross-Origin-Opener-Policy "same-origin"
   Header always set Cross-Origin-Embedder-Policy "credentialless"
+  Header always set Cross-Origin-Opener-Policy "same-origin"
   Header always set Cross-Origin-Resource-Policy "same-origin"
 </IfModule>
 
 ErrorDocument 404 /404.html
 
-# Retired theme demo pages
-RedirectMatch 410 ^/(projects/|blog/0[1-8]-)
-
 # Contact
-Redirect 301 /meet    https://cal.com/rdhar/1-1
-Redirect 301 /cal     https://cal.com/rdhar/1-1
-Redirect 301 /call    https://cal.com/rdhar/1-1
-Redirect 301 /contact https://cal.com/rdhar/1-1
+RedirectMatch 301 ^/(meet|cal|call|contact)$ https://cal.com/rdhar/1-1
 
 # Employment
-Redirect 301 /cv     https://drive.google.com/file/d/17ITBZFoJ-Tp9Vhq-HzKeV7TQmRoI8qR5/view?usp=sharing
-Redirect 301 /resume https://drive.google.com/file/d/17ITBZFoJ-Tp9Vhq-HzKeV7TQmRoI8qR5/view?usp=sharing
+RedirectMatch 301 ^/(cv|resume)$ https://drive.google.com/file/d/17ITBZFoJ-Tp9Vhq-HzKeV7TQmRoI8qR5/view?usp=sharing
 
 # Socials
-Redirect 301 /bluesky  https://bsky.app/profile/rdhar.dev
-Redirect 301 /github   https://github.com/rdhar
-Redirect 301 /gravatar https://gravatar.com/rishavdhar
-Redirect 301 /linkedin https://www.linkedin.com/in/rishavdhar
-Redirect 301 /medium   https://medium.com/@rishavd
+RedirectMatch 301 ^/(bluesky|bsky|twitter|x)$ https://bsky.app/profile/rdhar.dev
+RedirectMatch 301 ^/(gh|git|github)$ https://github.com/rdhar
+RedirectMatch 301 ^/gravatar$ https://gravatar.com/rishavdhar
+RedirectMatch 301 ^/(in|linkedin)$ https://www.linkedin.com/in/rishavdhar
+RedirectMatch 301 ^/medium$ https://medium.com/@rishavd
 
 # Events
-Redirect 301 /aws35              https://www.linkedin.com/posts/rishavdhar_thanks-to-cirrushq-for-hosting-tonights-activity-7344062091609149458-pjDr
-Redirect 301 /bash-to-typescript https://docs.google.com/presentation/d/1iZqwktHB8oRAbF6ugNSkTK6nlsXHXksq6VigT9D29vg/edit?usp=sharing
-Redirect 301 /iacconf            https://docs.google.com/presentation/d/1RIjLNMR3BtmYyTO7MGX42jo_C_8Qrqjo56l8OgvLvIs/edit?usp=sharing
+RedirectMatch 301 ^/aws35$ https://www.linkedin.com/posts/rishavdhar_thanks-to-cirrushq-for-hosting-tonights-activity-7344062091609149458-pjDr
+RedirectMatch 301 ^/bash-to-typescript$ https://docs.google.com/presentation/d/1iZqwktHB8oRAbF6ugNSkTK6nlsXHXksq6VigT9D29vg/edit?usp=sharing
+RedirectMatch 301 ^/iacconf$ https://docs.google.com/presentation/d/1RIjLNMR3BtmYyTO7MGX42jo_C_8Qrqjo56l8OgvLvIs/edit?usp=sharing
